@@ -31,4 +31,11 @@ public class Cell {
 		return temp;
 	}
 	
+	public int getLine(){
+		return line;
+	}
+	
+	public int getCol(){
+		return colune;
+	}
 }

@@ -1,18 +1,19 @@
 package game.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Label;
 
-import javax.swing.JLabel;
-
 import game.logic.*;
 import game.logic.Drake.DragonChoice;
 
 import javax.swing.*;
+
+import game.logic.Cell;
 
 public class GameFrame  extends JFrame {
 	
@@ -25,14 +26,18 @@ public class GameFrame  extends JFrame {
 	private JButton Gexit;
 	private JPanel GButtons;
 	private GamePanel GPanel;
-	private JDialog options;
-	
+	private GameOptions Gameoptions;
+	private DragonChoice DChoice;
+	private int nrDrakes;
+	private int MazeSize;
+	private int FLargura;
+	private int FAltura;
 	
 	public GameFrame(){
-		jogoAtivo = true;
-		Jogo = new Game(0,1,DragonChoice.NOTMOV);
-		GPanel = new GamePanel(Jogo.giveTab2());
+		nrDrakes = 2;
+		jogoAtivo = false;
 		
+		GPanel = new GamePanel();
 		
 		setTitle("Maze Game");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -44,17 +49,38 @@ public class GameFrame  extends JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		addButtons();
-		setSize(793, 470);
+		FLargura = 793;
+		FAltura = 470;
+		setSize(FLargura, FAltura);
+		
+		Gameoptions = new GameOptions(this,GPanel);
 	}
-	
-	
 	
 	private void ButtonsActions()
 	{
 		GNewGame = new JButton("New Game");
-		GNewGame.addActionListener(new ActionListener() {
+		GNewGame.addActionListener(new ActionListener() 
+		
+		{
 			public void actionPerformed(ActionEvent arg0) {
-				//a preencher
+				String msg = "Do you want New Game?";
+				int res = JOptionPane.showConfirmDialog(rootPane, msg);
+
+				if (res == JOptionPane.YES_OPTION)
+					{
+					nrDrakes = Gameoptions.getnewNrD();
+					MazeSize = Gameoptions.getnewSizeM();
+					
+					Jogo = new Game(MazeSize,nrDrakes,DragonChoice.NOTMOV);
+					GPanel.updateBegin(Jogo.giveTab2());
+					addButtons();
+					
+					Cell  temp = GPanel.newSize();
+					FLargura = temp.getCol();
+					FAltura = temp.getLine() + 50;
+					
+					setSize(FLargura, FAltura);
+					}
 			}
 		
 		}
@@ -64,7 +90,7 @@ public class GameFrame  extends JFrame {
 		GOptions = new JButton("Options");
 		GOptions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//a preencher
+				Gameoptions.setVisible(true);
 			}
 		}
 		);
@@ -84,6 +110,7 @@ public class GameFrame  extends JFrame {
 		Gexit = new JButton("Quit");
 		Gexit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				String msg = "Are you sure you want to quit?";
 				int res = JOptionPane.showConfirmDialog(rootPane, msg);
 
@@ -94,18 +121,25 @@ public class GameFrame  extends JFrame {
 		
 	}
 	
-	
-	
-	
-	
 	private void addButtons() {
 		
 		GButtons.setLayout(new GridLayout(1, 4));
 		GButtons.add(GNewGame);
-		GButtons.add(GSaveload);
-		GButtons.add(GOptions);
-		GButtons.add(Gexit);
+		GNewGame.setBackground(Color.BLACK);
+		GNewGame.setForeground(Color.GRAY);
 		
+		GButtons.add(GSaveload);
+		GSaveload.setBackground(Color.BLACK);
+		GSaveload.setForeground(Color.GRAY);
+		
+		
+		GButtons.add(GOptions);
+		GOptions.setBackground(Color.BLACK);
+		GOptions.setForeground(Color.GRAY);
+		
+		GButtons.add(Gexit);
+		Gexit.setBackground(Color.BLACK);
+		Gexit.setForeground(Color.GRAY);
 		
 		
 		getContentPane().add(GButtons, BorderLayout.NORTH);
@@ -116,6 +150,17 @@ public class GameFrame  extends JFrame {
 		//getContentPane().add(GSymbols, BorderLayout.NORTH);
 	}
 
+	public int getMSize(){
+		
+		if(MazeSize != 0)
+		return MazeSize;
+		
+		return 10;
+	}
+	
+	public int getDrakenr(){
+		return nrDrakes;
+	}
 
 }
 

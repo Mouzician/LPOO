@@ -10,6 +10,7 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import game.logic.Cell;
 
 import java.awt.event.KeyAdapter;
 
@@ -25,6 +26,9 @@ public class GamePanel extends JPanel implements ActionListener {
 	private Image Intro;
 	private Image End;
 	private Image MonsterS;
+	
+	private int FSizeX;
+	private int FSizeY;
 		
 	private int upKey = KeyEvent.VK_W;
 	private int leftKey = KeyEvent.VK_A;
@@ -36,11 +40,9 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	private boolean Inicio;
 	
-	public GamePanel(char[][] t) {
-		Inicio = false;
+	public GamePanel() {
+		Inicio = true;
 		loadImages();
-		tab = t;
-		
 	}
 
 	private void loadImages(){
@@ -76,7 +78,7 @@ public class GamePanel extends JPanel implements ActionListener {
 		Bird = temp.getImage();
 		
 		//End
-		temp = new ImageIcon(this.getClass().getResource("images/end.png"));
+		temp = new ImageIcon(this.getClass().getResource("images/end2.png"));
 		End = temp.getImage();
 			
 		//Intro
@@ -119,7 +121,8 @@ public class GamePanel extends JPanel implements ActionListener {
 		
 		
 		
-		
+		FSizeX = (FSizeX * tab.length);
+		FSizeY = (FSizeY * tab.length);
 	}
 	
 	private boolean exists(char t)
@@ -136,8 +139,10 @@ public class GamePanel extends JPanel implements ActionListener {
 	
 	private void drawSymbol(Graphics2D g2d,int x, int y, char s)
 	{
-		int nx = x * 50;
-		int ny = y * 50;
+		
+		
+		int nx = (FSizeX / tab.length);
+		int ny = (FSizeY / tab.length);
 		
 		Image temp = Intro;
 		
@@ -167,11 +172,14 @@ public class GamePanel extends JPanel implements ActionListener {
 		case 'S':
 			temp = End;
 			break;
+		case 'F':
+			temp = MonsterS;
+			break;
 		}
 		
-		g2d.drawImage(temp, nx, ny, 50, 50 , null);
+		g2d.drawImage(temp, x * nx, y * ny,   nx, ny , null);
 
-		
+	
 		
 	}
 	
@@ -179,5 +187,17 @@ public class GamePanel extends JPanel implements ActionListener {
 	private void updateTab(char[][] t)
 	{tab = t;}
 	
+	public void updateBegin(char[][] t){
+		tab = t;
+		Inicio = false;
+		FSizeX = 660;
+		FSizeY = 660;
+		
+		
+	}
+	
+	public Cell newSize(){
+		return new Cell(FSizeY, FSizeX);
+	}
 	
 }
