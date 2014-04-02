@@ -14,7 +14,6 @@ import game.logic.Cell;
 
 import java.awt.event.KeyAdapter;
 
-
 public class GamePanel extends JPanel implements ActionListener {
 	private Image Wall;
 	private Image Floor;
@@ -26,128 +25,118 @@ public class GamePanel extends JPanel implements ActionListener {
 	private Image Intro;
 	private Image End;
 	private Image MonsterS;
-	
+
 	private int FSizeX;
 	private int FSizeY;
-		
+
 	private int upKey = KeyEvent.VK_W;
 	private int leftKey = KeyEvent.VK_A;
 	private int rightKey = KeyEvent.VK_D;
 	private int downKey = KeyEvent.VK_S;
 	private int sendEagleKey = KeyEvent.VK_E;
-	
+
 	char[][] tab;
-	
+
 	private boolean Inicio;
-	
+
 	public GamePanel() {
 		Inicio = true;
 		loadImages();
 	}
 
-	private void loadImages(){
+	private void loadImages() {
 		ImageIcon temp;
-		
-		
+
 		// wall
 		temp = new ImageIcon(this.getClass().getResource("images/wall.png"));
 		Wall = temp.getImage();
-		
+
 		// Floor
 		temp = new ImageIcon(this.getClass().getResource("images/floor.png"));
 		Floor = temp.getImage();
-		
+
 		// Hero
 		temp = new ImageIcon(this.getClass().getResource("images/hero.png"));
 		Hero = temp.getImage();
-		
+
 		// HeroS
-		temp = new ImageIcon(this.getClass().getResource("images/herosword.png"));
+		temp = new ImageIcon(this.getClass()
+				.getResource("images/herosword.png"));
 		HeroS = temp.getImage();
-		
+
 		// Monster
 		temp = new ImageIcon(this.getClass().getResource("images/badguy.png"));
 		Monster = temp.getImage();
-		
+
 		// Sword
-		temp = new ImageIcon(this.getClass().getResource("images/floorsword.png"));
+		temp = new ImageIcon(this.getClass().getResource(
+				"images/floorsword.png"));
 		Sword = temp.getImage();
-		
+
 		// Bird
 		temp = new ImageIcon(this.getClass().getResource("images/bird.png"));
 		Bird = temp.getImage();
-		
-		//End
+
+		// End
 		temp = new ImageIcon(this.getClass().getResource("images/end2.png"));
 		End = temp.getImage();
-			
-		//Intro
+
+		// Intro
 		temp = new ImageIcon(this.getClass().getResource("images/intro.png"));
 		Intro = temp.getImage();
-		
-		//Intro
-		temp = new ImageIcon(this.getClass().getResource("images/badguysword.png"));
+
+		// Intro
+		temp = new ImageIcon(this.getClass().getResource(
+				"images/badguysword.png"));
 		MonsterS = temp.getImage();
-		
-		
+
 	}
-	
-	
+
 	public void actionPerformed(ActionEvent e) {
 		repaint();
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
-	    super.paintComponents(g);
-	    Graphics2D g2 = (Graphics2D) g;
-	    
-	    if(Inicio)
-	    g2.drawImage(Intro,0,0,null);
-	    else
-	    	DrawMaze(g2);
-	
-	    
-	   }
-	
-	private void DrawMaze(Graphics2D g2d){
-		
+		super.paintComponents(g);
+		Graphics2D g2 = (Graphics2D) g;
+
+		if (Inicio)
+			g2.drawImage(Intro, 0, 0, null);
+		else
+			DrawMaze(g2);
+
+	}
+
+	private void DrawMaze(Graphics2D g2d) {
+
 		for (int i = 0; i < tab.length; i++)
-			for (int a = 0; a < tab.length; a++)
-			{
-					drawSymbol(g2d,a,i,tab[i][a]);
-				
+			for (int a = 0; a < tab.length; a++) {
+				drawSymbol(g2d, a, i, tab[i][a]);
+
 			}
-		
-		
-		
+
 		FSizeX = (FSizeX * tab.length);
 		FSizeY = (FSizeY * tab.length);
 	}
-	
-	private boolean exists(char t)
-	{
+
+	private boolean exists(char t) {
 		for (int i = 0; i < tab.length; i++)
 			for (int a = 0; a < tab.length; a++)
-				if(tab[i][a] == t)
+				if (tab[i][a] == t)
 					return true;
-	
-	return false;
+
+		return false;
 	}
-	
-	
-	
-	private void drawSymbol(Graphics2D g2d,int x, int y, char s)
-	{
-		
-		
+
+	private void drawSymbol(Graphics2D g2d, int x, int y, char s) {
+
 		int nx = (FSizeX / tab.length);
 		int ny = (FSizeY / tab.length);
-		
+
 		Image temp = Intro;
-		
-		switch(s)
-		{
+
+		switch (s) {
 		case 'X':
 			temp = Wall;
 			break;
@@ -176,28 +165,25 @@ public class GamePanel extends JPanel implements ActionListener {
 			temp = MonsterS;
 			break;
 		}
-		
-		g2d.drawImage(temp, x * nx, y * ny,   nx, ny , null);
 
-	
-		
+		g2d.drawImage(temp, x * nx, y * ny, nx, ny, null);
+
 	}
-	
-	
-	private void updateTab(char[][] t)
-	{tab = t;}
-	
-	public void updateBegin(char[][] t){
+
+	private void updateTab(char[][] t) {
+		tab = t;
+	}
+
+	public void updateBegin(char[][] t) {
 		tab = t;
 		Inicio = false;
 		FSizeX = 660;
 		FSizeY = 660;
-		
-		
+
 	}
-	
-	public Cell newSize(){
+
+	public Cell newSize() {
 		return new Cell(FSizeY, FSizeX);
 	}
-	
+
 }
