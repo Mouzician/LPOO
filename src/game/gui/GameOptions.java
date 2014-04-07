@@ -127,9 +127,7 @@ public class GameOptions extends JDialog {
 				else
 					MSize = MazeSize.getValue();
 
-				if (Drakenr.getValue() % 2 == 0)
-					DNumber = Drakenr.getValue() + 1;
-				else
+				
 					DNumber = Drakenr.getValue();
 
 				if (Drakeb[0].isSelected())
