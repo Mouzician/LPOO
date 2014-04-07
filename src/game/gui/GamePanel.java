@@ -1,5 +1,10 @@
 package game.gui;
 
+import game.logic.*;
+import game.logic.Drake.DragonChoice;
+
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,7 +14,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 import game.logic.Cell;
 
 import java.awt.event.KeyAdapter;
@@ -25,6 +32,7 @@ public class GamePanel extends JPanel implements ActionListener {
 	private Image Intro;
 	private Image End;
 	private Image MonsterS;
+	private Image SpleepMonster;
 
 	private int FSizeX;
 	private int FSizeY;
@@ -35,13 +43,14 @@ public class GamePanel extends JPanel implements ActionListener {
 	private int downKey = KeyEvent.VK_S;
 	private int sendEagleKey = KeyEvent.VK_E;
 
-	char[][] tab;
+	Game Jogo;
 
 	private boolean Inicio;
 
 	public GamePanel() {
 		Inicio = true;
 		loadImages();
+		Jogo = null;
 	}
 
 	private void loadImages() {
@@ -85,10 +94,16 @@ public class GamePanel extends JPanel implements ActionListener {
 		temp = new ImageIcon(this.getClass().getResource("images/intro.png"));
 		Intro = temp.getImage();
 
-		// Intro
+		// Monster&Sword
 		temp = new ImageIcon(this.getClass().getResource(
 				"images/badguysword.png"));
 		MonsterS = temp.getImage();
+		
+		// Moneter Sleeping
+		temp = new ImageIcon(this.getClass().getResource(
+				"images/badguysleep.png"));
+		 SpleepMonster = temp.getImage();
+		
 
 	}
 
@@ -109,7 +124,8 @@ public class GamePanel extends JPanel implements ActionListener {
 	}
 
 	private void DrawMaze(Graphics2D g2d) {
-
+		char[][] tab = Jogo.giveTab2();
+		
 		for (int i = 0; i < tab.length; i++)
 			for (int a = 0; a < tab.length; a++) {
 				drawSymbol(g2d, a, i, tab[i][a]);
@@ -120,19 +136,12 @@ public class GamePanel extends JPanel implements ActionListener {
 		FSizeY = (FSizeY * tab.length);
 	}
 
-	private boolean exists(char t) {
-		for (int i = 0; i < tab.length; i++)
-			for (int a = 0; a < tab.length; a++)
-				if (tab[i][a] == t)
-					return true;
 
-		return false;
-	}
 
 	private void drawSymbol(Graphics2D g2d, int x, int y, char s) {
 
-		int nx = (FSizeX / tab.length);
-		int ny = (FSizeY / tab.length);
+		int nx = (FSizeX / Jogo.giveTab2().length);
+		int ny = (FSizeY / Jogo.giveTab2().length);
 
 		Image temp = Intro;
 
@@ -169,13 +178,44 @@ public class GamePanel extends JPanel implements ActionListener {
 		g2d.drawImage(temp, x * nx, y * ny, nx, ny, null);
 
 	}
+	
+	public void keyPressed(KeyEvent e) {
+		if (Inicio)
+			return;
 
-	private void updateTab(char[][] t) {
-		tab = t;
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_RIGHT || key == rightKey)
+			Jogo.movHero(1, 0);
+		else if (key == KeyEvent.VK_DOWN || key == downKey)
+			Jogo.movHero(0, 1);
+		else if (key == KeyEvent.VK_LEFT || key == leftKey)
+			Jogo.movHero(-1, 0);
+		else if (key == KeyEvent.VK_UP || key == upKey)
+			Jogo.movHero(0, -1);
+		
+		//else if (key == sendEagleKey)
+			
+		Drake tempD[] = Jogo.getDrags();
+		for (int d = 0; d < tempD.length; d++)
+			if ( tempD[d].alive())
+				 Jogo.movDrakeId(d);
+
+		if(Jogo.getEagle().alive() && Jogo.getEagle().flying())
+			Jogo.movEagle();
+		
+		
+		if (!Jogo.getHero().alive())
+			Inicio = true;
+		
+		repaint();
 	}
+	
+	
 
-	public void updateBegin(char[][] t) {
-		tab = t;
+
+	public void updateBegin(Game j) {
+		Jogo = j;
 		Inicio = false;
 		FSizeX = 660;
 		FSizeY = 660;
@@ -184,6 +224,9 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	public Cell newSize() {
 		return new Cell(FSizeY, FSizeX);
+	}
+	public boolean Inicio(){
+		return Inicio;
 	}
 
 }

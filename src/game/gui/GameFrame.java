@@ -17,9 +17,6 @@ import game.logic.Cell;
 
 public class GameFrame extends JFrame {
 
-	private Game Jogo;
-
-	boolean jogoAtivo;
 	private JButton GNewGame;
 	private JButton GOptions;
 	private JButton GSaveload;
@@ -31,7 +28,6 @@ public class GameFrame extends JFrame {
 	private int FAltura;
 
 	public GameFrame() {
-		jogoAtivo = false;
 
 		GPanel = new GamePanel();
 
@@ -63,9 +59,9 @@ public class GameFrame extends JFrame {
 
 				if (res == JOptionPane.YES_OPTION) {
 
-					Jogo = new Game(Gameoptions.getnewSizeM(), Gameoptions
+					Game Jogo = new Game(Gameoptions.getnewSizeM(), Gameoptions
 							.getnewNrD(), Gameoptions.getnewDrakeB());
-					GPanel.updateBegin(Jogo.giveTab2());
+					GPanel.updateBegin(Jogo);
 					addButtons();
 
 					Cell temp = GPanel.newSize();
@@ -89,7 +85,7 @@ public class GameFrame extends JFrame {
 		GSaveload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (!jogoAtivo)
+				if (GPanel.Inicio())
 					JOptionPane.showMessageDialog(rootPane, "No game to save",
 							"Error", JOptionPane.ERROR_MESSAGE);
 
