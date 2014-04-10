@@ -3,11 +3,10 @@ package game.gui;
 import game.logic.*;
 import game.logic.Drake.DragonChoice;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -21,7 +20,7 @@ import game.logic.Cell;
 
 import java.awt.event.KeyAdapter;
 
-public class GamePanel extends JPanel implements ActionListener {
+public class GamePanel extends JPanel implements  KeyListener {
 	private Image Wall;
 	private Image Floor;
 	private Image Hero;
@@ -51,6 +50,9 @@ public class GamePanel extends JPanel implements ActionListener {
 		Inicio = true;
 		loadImages();
 		Jogo = null;
+		addKeyListener(this);
+		setFocusable(true);
+		requestFocusInWindow();
 	}
 
 	private void loadImages() {
@@ -99,7 +101,7 @@ public class GamePanel extends JPanel implements ActionListener {
 				"images/badguysword.png"));
 		MonsterS = temp.getImage();
 		
-		// Moneter Sleeping
+		// Monster Sleeping
 		temp = new ImageIcon(this.getClass().getResource(
 				"images/badguysleep.png"));
 		 SpleepMonster = temp.getImage();
@@ -179,7 +181,9 @@ public class GamePanel extends JPanel implements ActionListener {
 
 	}
 	
+	@Override
 	public void keyPressed(KeyEvent e) {
+		 System.out.println("keyPressed: "+e);
 		if (Inicio)
 			return;
 
@@ -210,6 +214,15 @@ public class GamePanel extends JPanel implements ActionListener {
 		
 		repaint();
 	}
+	  @Override
+      public void keyTyped(KeyEvent e) {
+		  System.out.println("keyTyped: "+e);
+	  }
+
+      @Override
+      public void keyReleased(KeyEvent e) {
+    	  System.out.println("keyReleased: "+e);
+      }
 	
 	
 
