@@ -9,6 +9,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JDialog;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
@@ -24,25 +26,34 @@ import javax.swing.JRadioButton;
 import java.awt.GridLayout;
 
 public class GameOptions extends JDialog {
-	GameFrame Game;
-	GamePanel GPanel;
 	JSlider MazeSize;
 	JSlider Drakenr;
 	JButton Apply;
 	JButton Cancel;
-	private int MSize;
-	private int DNumber;
+	private int MSize = 0;
+	private int DNumber = 1;
 	JPanel PanelOpt;
 	JRadioButton[] Drakeb;
 	private DragonChoice newDChoice;
 
-	public GameOptions(GameFrame g, GamePanel p) {
+	private String Upkey = "W";
+	private String Downkey = "S";
+	private String Leftkey = "A";
+	private String Rightkey = "D";
+	private String Eaglekey = "E";
+	
+	JTextField keyUp;
+	JTextField keyDown;
+	JTextField keyLeft;
+	JTextField keyRight;
+	JTextField keyEagle;
+	
+	public GameOptions() {
 		PanelOpt = new JPanel();
-		this.Game = g;
-		this.GPanel = p;
 
 		checkSlider();
 		checkBehav();
+		keyChange();
 		ButtonsActions();
 		setSize(300, 500);
 		addButtons();
@@ -137,6 +148,34 @@ public class GameOptions extends JDialog {
 				else if (Drakeb[2].isSelected())
 					newDChoice = DragonChoice.NOTMOV;
 
+				
+				if(StringKey(keyUp.getText()) != 0)
+					Upkey = keyUp.getText();
+				else
+					keyUp.setText(String.valueOf(Upkey));
+				
+				if(StringKey(keyDown.getText()) != 0)
+					Downkey = keyDown.getText();
+				else
+					keyDown.setText(String.valueOf(Downkey));
+				
+				if(StringKey(keyLeft.getText()) != 0)
+					Leftkey = keyLeft.getText();
+				else
+					keyLeft.setText(String.valueOf(Leftkey));
+				
+				if(StringKey(keyRight.getText()) != 0)
+					Rightkey = keyRight.getText();
+				else
+					keyRight.setText(String.valueOf(Rightkey));
+				
+				if(StringKey(keyEagle.getText()) != 0)
+					Eaglekey = keyEagle.getText();
+				else
+					keyEagle.setText(String.valueOf(Eaglekey));
+				
+				
+				
 				setVisible(false);
 			}
 
@@ -164,6 +203,47 @@ public class GameOptions extends JDialog {
 		Cancel.setForeground(Color.GRAY);
 	}
 
+	private void keyChange(){
+		JLabel titleControl = new JLabel(
+				"                           Controls               ");
+		JLabel enter = new JLabel("                             ");
+	
+		PanelOpt.add(titleControl);
+		PanelOpt.add(enter);
+		
+		
+		JLabel Up = new JLabel("                   Up key: ");
+		keyUp = new JTextField(String.valueOf(Upkey), 3);
+		PanelOpt.add(Up);
+		PanelOpt.add(keyUp);
+		
+		
+		JLabel Down = new JLabel("Down key: ");
+		keyDown = new JTextField(String.valueOf(Downkey), 3);
+		PanelOpt.add(Down);
+		PanelOpt.add(keyDown);
+		
+		JLabel Left = new JLabel("          Left key: ");
+		keyLeft = new JTextField(String.valueOf(Leftkey), 3);
+		PanelOpt.add(Left);
+		PanelOpt.add(keyLeft);
+		
+		JLabel Right = new JLabel("Right key: ");
+		keyRight = new JTextField(String.valueOf(Rightkey), 3);
+		PanelOpt.add(Right);
+		PanelOpt.add(keyRight);
+		
+		JLabel Eagle = new JLabel("      Eagle key: ");
+		keyEagle = new JTextField(String.valueOf(Eaglekey), 3);
+		PanelOpt.add(Eagle);
+		PanelOpt.add(keyEagle);
+		
+		
+		PanelOpt.add(enter);
+		
+	}
+	
+	
 	public int getnewSizeM() {
 		return MSize;
 	}
@@ -174,6 +254,47 @@ public class GameOptions extends JDialog {
 
 	public DragonChoice getnewDrakeB() {
 		return newDChoice;
+	}
+	
+	
+	public static int StringKey(String str) {
+		str = str.toUpperCase();
+
+		switch (str) {
+		case "A": return KeyEvent.VK_A;
+		case "B": return KeyEvent.VK_B;
+		case "C": return KeyEvent.VK_C;
+		case "D": return KeyEvent.VK_D;
+		case "E": return KeyEvent.VK_E;
+		case "F": return KeyEvent.VK_F;
+		case "G": return KeyEvent.VK_G;
+		case "H": return KeyEvent.VK_H;
+		case "I": return KeyEvent.VK_I;
+		case "J": return KeyEvent.VK_J;
+		case "K": return KeyEvent.VK_K;
+		case "L": return KeyEvent.VK_L;
+		case "M": return KeyEvent.VK_M;
+		case "N": return KeyEvent.VK_N;
+		case "O": return KeyEvent.VK_O;
+		case "P": return KeyEvent.VK_P;
+		case "Q": return KeyEvent.VK_Q;
+		case "R": return KeyEvent.VK_R;
+		case "S": return KeyEvent.VK_S;
+		case "T": return KeyEvent.VK_T;
+		case "U": return KeyEvent.VK_U;
+		case "V": return KeyEvent.VK_V;
+		case "W": return KeyEvent.VK_W;
+		case "X": return KeyEvent.VK_X;
+		case "Y": return KeyEvent.VK_Y;
+		case "Z": return KeyEvent.VK_Z;
+		}
+
+		return 0;
+	}
+
+	public int[] keys(){
+		int[] array = {StringKey(Upkey),StringKey(Downkey),StringKey(Leftkey),StringKey(Rightkey),StringKey(Eaglekey)};
+		return array;
 	}
 
 }

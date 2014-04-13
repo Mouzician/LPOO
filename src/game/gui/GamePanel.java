@@ -3,22 +3,16 @@ package game.gui;
 import game.logic.*;
 import game.logic.Drake.DragonChoice;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import game.logic.Cell;
-
-import java.awt.event.KeyAdapter;
 
 public class GamePanel extends JPanel implements  KeyListener {
 	private Image Wall;
@@ -50,9 +44,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 		Inicio = true;
 		loadImages();
 		Jogo = null;
-		addKeyListener(this);
-		setFocusable(true);
-		requestFocusInWindow();
 	}
 
 	private void loadImages() {
@@ -107,10 +98,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 		 SpleepMonster = temp.getImage();
 		
 
-	}
-
-	public void actionPerformed(ActionEvent e) {
-		repaint();
 	}
 
 	@Override
@@ -227,12 +214,19 @@ public class GamePanel extends JPanel implements  KeyListener {
 	
 
 
-	public void updateBegin(Game j) {
+	public void updateBegin(Game j,int[] keys) {
 		Jogo = j;
 		Inicio = false;
 		FSizeX = 660;
 		FSizeY = 660;
+		
+		upKey = keys[0];
+		leftKey = keys[1];
+		rightKey = keys[2];
+		downKey = keys[3];
+		sendEagleKey = keys[4];
 
+		repaint();
 	}
 
 	public Cell newSize() {
@@ -241,5 +235,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 	public boolean Inicio(){
 		return Inicio;
 	}
+	
 
 }

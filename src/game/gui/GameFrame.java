@@ -2,7 +2,6 @@ package game.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,30 +44,33 @@ public class GameFrame extends JFrame {
 		FAltura = 470;
 		setSize(FLargura, FAltura);
 
-		Gameoptions = new GameOptions(this, GPanel);
+		Gameoptions = new GameOptions();
 	}
 
 	private void ButtonsActions() {
 		GNewGame = new JButton("New Game");
 		GNewGame.addActionListener(new ActionListener()
-
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				String msg = "Do you want New Game?";
 				int res = JOptionPane.showConfirmDialog(rootPane, msg);
 
 				if (res == JOptionPane.YES_OPTION) {
-
+					
+					
+					FLargura = 660;
+					FAltura = 710;
+					
+					setSize(FLargura, FAltura);
 					Game Jogo = new Game(Gameoptions.getnewSizeM(), Gameoptions
 							.getnewNrD(), Gameoptions.getnewDrakeB());
-					GPanel.updateBegin(Jogo);
-					addButtons();
+					
+					
+					GPanel.updateBegin(Jogo,Gameoptions.keys());
+					
+					
 
-					Cell temp = GPanel.newSize();
-					FLargura = temp.getCol();
-					FAltura = temp.getLine() + 50;
-
-					setSize(FLargura, FAltura);
+					
 				}
 			}
 
