@@ -61,7 +61,7 @@ public class Game {
 
 		}
 
-		if (tab[Hero.linha][Hero.coluna] == 'S' && !Hero.arma()) {
+		if (tab[Hero.linha][Hero.coluna] == 'S' && !Hero.arma() && AllDrakesD()) {
 			Hero.coluna = Hero.coluna - dx;
 			Hero.linha = Hero.linha - dy;
 
@@ -158,6 +158,17 @@ public class Game {
 
 	}
 
+	public boolean AllDrakesD(){
+		
+		for (int d = 0; d < Drags.length; d++)
+			if (Drags[d].alive())
+				 return false;
+		
+		return true;
+		
+	}
+	
+	
 	public char[][] giveTab(){
 		
 		char[][] temp = new char[tab.length][2 * tab.length];

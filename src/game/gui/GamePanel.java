@@ -10,6 +10,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import game.logic.Cell;
@@ -122,7 +123,8 @@ public class GamePanel extends JPanel implements  KeyListener {
 				drawSymbol(g2d, a, i, tab[i][a]);
 			}
 		
-		Jogo.imprimeTab();
+		
+		
 	
 	}
 
@@ -154,6 +156,9 @@ public class GamePanel extends JPanel implements  KeyListener {
 		case 'D':
 			temp = Monster;
 			break;
+		case 'd':
+			temp = SpleepMonster;
+			break;
 		case 'B':
 			temp = Bird;
 			break;
@@ -171,7 +176,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
-		 System.out.println("keyPressed: "+e);
 		if (Inicio)
 			return;
 
@@ -198,9 +202,17 @@ public class GamePanel extends JPanel implements  KeyListener {
 		
 		
 		if (!Jogo.getHero().alive())
-			Inicio = true;
+			{Inicio = true;
+			final ImageIcon icon = new ImageIcon(this.getClass().getResource("images/gameover.png"));
+	        JOptionPane.showMessageDialog(null, "YOU DEAD BITCH", "GAME OVER", JOptionPane.INFORMATION_MESSAGE, icon);
+			}
 		
-		
+		if(Jogo.getOriTab()[Jogo.getHero().lin()][Jogo.getHero().col()] == 'S')
+		{Inicio = true;
+		final ImageIcon icon = new ImageIcon(this.getClass().getResource("images/cookie.png"));
+        JOptionPane.showMessageDialog(null, "give that man a cookie", "YOU WON", JOptionPane.INFORMATION_MESSAGE, icon);
+		}
+			
 		
 	
 		repaint();
