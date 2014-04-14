@@ -114,21 +114,23 @@ public class GamePanel extends JPanel implements  KeyListener {
 	}
 
 	private void DrawMaze(Graphics2D g2d) {
+		
 		char[][] tab = Jogo.giveTab2();
 		
 		for (int i = 0; i < tab.length; i++)
 			for (int a = 0; a < tab.length; a++) {
 				drawSymbol(g2d, a, i, tab[i][a]);
-
 			}
-
+		
+		Jogo.imprimeTab();
+	
 	}
 
 
 
 	private void drawSymbol(Graphics2D g2d, int x, int y, char s) {
 
-		int nx = (getWidth() / Jogo.giveTab2().length);
+		int nx = (getWidth() / Jogo.giveTab2().length) ;
 		int ny = (getHeight() / Jogo.giveTab2().length);
 
 		Image temp = Intro;
@@ -183,8 +185,8 @@ public class GamePanel extends JPanel implements  KeyListener {
 			Jogo.movHero(-1, 0);
 		else if (key == KeyEvent.VK_UP || key == upKey)
 			Jogo.movHero(0, -1);
-		
-		//else if (key == sendEagleKey)
+		else if (key == sendEagleKey)
+			Jogo.EagleTime();
 			
 		Drake tempD[] = Jogo.getDrags();
 		for (int d = 0; d < tempD.length; d++)
@@ -198,7 +200,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 		if (!Jogo.getHero().alive())
 			Inicio = true;
 		
-		Jogo.imprimeTab();
+		
 		
 	
 		repaint();
@@ -220,11 +222,11 @@ public class GamePanel extends JPanel implements  KeyListener {
 
 		setSize(660,660);
 		
-		//upKey = keys[0];
-		//leftKey = keys[1];
-		//rightKey = keys[2];
-		//downKey = keys[3];
-		//sendEagleKey = keys[4];
+		upKey = keys[0];
+		downKey = keys[1];
+		leftKey = keys[2];
+		rightKey = keys[3];
+		sendEagleKey = keys[4];
 		
 
 		repaint();

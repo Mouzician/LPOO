@@ -200,7 +200,9 @@ public class Game {
 		
 		char[][] temp = new char[tab.length][tab.length];
 
-		temp = tab;
+		for(int i=0; i<tab.length; i++)
+			  for(int j=0; j<tab.length; j++)
+			    temp[i][j]=tab[i][j];
 
 		temp[Hero.linha][Hero.coluna] = Hero.symbol();
 
@@ -232,7 +234,7 @@ public class Game {
 		char[][]temp = giveTab();
 
 		for (int linha = 0; linha < tab.length; linha++) {
-			for (int coluna = 0; coluna < 2 * temp.length; coluna++) {
+			for (int coluna = 0; coluna < 2* temp.length; coluna++) {
 				System.out.printf("%s", temp[linha][coluna]);
 			}
 			System.out.println();

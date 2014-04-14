@@ -81,6 +81,7 @@ public class GameFrame extends JFrame {
 		GOptions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Gameoptions.setVisible(true);
+				
 			}
 		});
 
@@ -106,7 +107,9 @@ public class GameFrame extends JFrame {
 					System.exit(0);
 			}
 		});
-
+		
+		GButtons.setFocusable(false);
+		GPanel.requestFocus();
 	}
 
 	private void addButtons() {

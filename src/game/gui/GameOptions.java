@@ -34,7 +34,7 @@ public class GameOptions extends JDialog {
 	private int DNumber = 1;
 	JPanel PanelOpt;
 	JRadioButton[] Drakeb;
-	private DragonChoice newDChoice;
+	private DragonChoice newDChoice = DragonChoice.NOTMOV;
 
 	private String Upkey = "W";
 	private String Downkey = "S";
