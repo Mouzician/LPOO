@@ -36,11 +36,12 @@ public class GamePanel extends JPanel implements  KeyListener {
 	private int sendEagleKey = KeyEvent.VK_E;
 
 	Game Jogo;
+	GameFrame GFrame;
 
 	private boolean Inicio;
 
-	public GamePanel() {
-		setSize(790,444);
+	public GamePanel(GameFrame g) {
+		GFrame = g;
 		Inicio = true;
 		loadImages();
 		Jogo = null;
@@ -209,21 +210,25 @@ public class GamePanel extends JPanel implements  KeyListener {
 		
 		repaint();
 		
-		if (!Jogo.getHero().alive())
+		if (!Jogo.getHero().alive() || Jogo.getOriTab()[Jogo.getHero().lin()][Jogo.getHero().col()] == 'S')
+			{	 
+			final ImageIcon icon;
+			
+			if(!Jogo.getHero().alive())
 			{
-			final ImageIcon icon = new ImageIcon(this.getClass().getResource("images/gameover.png"));
-	        JOptionPane.showMessageDialog(null, "YOU DEAD BITCH", "GAME OVER", JOptionPane.INFORMATION_MESSAGE, icon);
+				icon= new ImageIcon(this.getClass().getResource("images/gameover.png"));
+			 JOptionPane.showMessageDialog(null, "YOU DEAD BITCH", "GAME OVER", JOptionPane.INFORMATION_MESSAGE, icon);
+			}
+			else
+				{icon = new ImageIcon(this.getClass().getResource("images/cookie.png"));
+				JOptionPane.showMessageDialog(null, "give that man a cookie", "YOU WON", JOptionPane.INFORMATION_MESSAGE, icon);
+				}
+	       
 	        Inicio = true;
+	        GFrame.setSize(793, 470);
 			}
 		
-		if(Jogo.getOriTab()[Jogo.getHero().lin()][Jogo.getHero().col()] == 'S')
-		{
-		final ImageIcon icon = new ImageIcon(this.getClass().getResource("images/cookie.png"));
-        JOptionPane.showMessageDialog(null, "give that man a cookie", "YOU WON", JOptionPane.INFORMATION_MESSAGE, icon);
-        Inicio = true;
-		}
-			
-		
+
 	
 		
 	}
@@ -242,7 +247,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 		Jogo = j;
 		Inicio = false;
 
-		setSize(660,660);
 		
 		upKey = keys[0];
 		downKey = keys[1];

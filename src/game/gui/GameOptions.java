@@ -48,10 +48,13 @@ public class GameOptions extends JDialog {
 	JTextField keyRight;
 	JTextField keyEagle;
 	
-	public GameOptions() {
+	GamePanel GPanel;
+	
+	public GameOptions(GamePanel g) {
 		setBackground(Color.GRAY);
 		PanelOpt = new JPanel();
-
+		
+		GPanel = g;
 		checkSlider();
 		checkBehav();
 		keyChange();
@@ -178,6 +181,8 @@ public class GameOptions extends JDialog {
 				
 				
 				setVisible(false);
+				setFocusable(false);
+				GPanel.requestFocus();
 			}
 
 		});
@@ -190,8 +195,13 @@ public class GameOptions extends JDialog {
 
 				if (res == JOptionPane.YES_OPTION)
 					setVisible(false);
+			
+				setFocusable(false);
+				GPanel.requestFocus();
 			}
 		});
+		
+		
 	}
 
 	private void addButtons() {

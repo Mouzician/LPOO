@@ -26,7 +26,7 @@ public class GameFrame extends JFrame {
 
 	public GameFrame() {
 
-		GPanel = new GamePanel();
+		GPanel = new GamePanel(this);
 		GPanel.setVisible(true);
 
 		setTitle("Maze Game");
@@ -41,7 +41,7 @@ public class GameFrame extends JFrame {
 		addButtons();
 		setSize(793, 470);
 
-		Gameoptions = new GameOptions();
+		Gameoptions = new GameOptions(GPanel);
 	}
 
 	private void ButtonsActions() {
@@ -85,7 +85,8 @@ public class GameFrame extends JFrame {
 				if (GPanel.Inicio())
 					JOptionPane.showMessageDialog(rootPane, "No game to save",
 							"Error", JOptionPane.ERROR_MESSAGE);
-
+				
+				GPanel.requestFocus();
 			}
 		});
 
@@ -101,8 +102,8 @@ public class GameFrame extends JFrame {
 			}
 		});
 		
-		GButtons.setFocusable(false);
-		GPanel.requestFocus();
+
+		
 	}
 
 	private void addButtons() {
