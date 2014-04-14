@@ -54,7 +54,7 @@ public class Game {
 						&& Math.abs(Drags[d].linha - Hero.linha) <= 1 && !Hero.arma())
 					Hero.Dead();
 
-			if (Hero.samePosition(Espada))
+			if (Hero.samePosition(Espada) && !Ei.armada())
 				Hero.armado();
 
 			for (int d = 0; d < Drags.length; d++)
