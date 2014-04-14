@@ -29,6 +29,7 @@ public class GameFrame extends JFrame {
 	public GameFrame() {
 
 		GPanel = new GamePanel();
+		GPanel.setVisible(true);
 
 		setTitle("Maze Game");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

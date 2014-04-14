@@ -49,6 +49,7 @@ public class GameOptions extends JDialog {
 	JTextField keyEagle;
 	
 	public GameOptions() {
+		setBackground(Color.GRAY);
 		PanelOpt = new JPanel();
 
 		checkSlider();

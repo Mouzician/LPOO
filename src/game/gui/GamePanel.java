@@ -44,6 +44,11 @@ public class GamePanel extends JPanel implements  KeyListener {
 		Inicio = true;
 		loadImages();
 		Jogo = null;
+		requestFocus();
+		addKeyListener(this);
+		setFocusable(true);
+
+		
 	}
 
 	private void loadImages() {
@@ -219,6 +224,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 		Inicio = false;
 		FSizeX = 660;
 		FSizeY = 660;
+		setSize(660,660);
 		
 		upKey = keys[0];
 		leftKey = keys[1];
