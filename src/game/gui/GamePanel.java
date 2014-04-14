@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 	private Image Monster;
 	private Image Sword;
 	private Image Bird;
+	private Image BirdS;
 	private Image Intro;
 	private Image End;
 	private Image MonsterS;
@@ -81,6 +82,11 @@ public class GamePanel extends JPanel implements  KeyListener {
 		temp = new ImageIcon(this.getClass().getResource("images/bird.png"));
 		Bird = temp.getImage();
 
+		//BirdS
+		temp = new ImageIcon(this.getClass().getResource("images/birdS.png"));
+		BirdS = temp.getImage();
+		
+		
 		// End
 		temp = new ImageIcon(this.getClass().getResource("images/end2.png"));
 		End = temp.getImage();
@@ -156,8 +162,11 @@ public class GamePanel extends JPanel implements  KeyListener {
 		case 'd':
 			temp = SpleepMonster;
 			break;
-		case 'B':
+		case 'W':
 			temp = Bird;
+			break;
+		case 'V':
+			temp = BirdS;
 			break;
 		case 'S':
 			temp = End;
@@ -186,7 +195,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 			Jogo.movHero(-1, 0);
 		else if (key == KeyEvent.VK_UP || key == upKey)
 			Jogo.movHero(0, -1);
-		else if (key == sendEagleKey)
+		else if (key == sendEagleKey && !Jogo.getEagle().flying() && !Jogo.getHero().arma())
 			Jogo.EagleTime();
 			
 		Drake tempD[] = Jogo.getDrags();
@@ -198,19 +207,23 @@ public class GamePanel extends JPanel implements  KeyListener {
 			Jogo.movEagle();
 		
 		
+		repaint();
+		
 		if (!Jogo.getHero().alive())
-			{Inicio = true;
+			{
 			final ImageIcon icon = new ImageIcon(this.getClass().getResource("images/gameover.png"));
 	        JOptionPane.showMessageDialog(null, "YOU DEAD BITCH", "GAME OVER", JOptionPane.INFORMATION_MESSAGE, icon);
+	        Inicio = true;
 			}
 		
 		if(Jogo.getOriTab()[Jogo.getHero().lin()][Jogo.getHero().col()] == 'S')
-		{Inicio = true;
+		{
 		final ImageIcon icon = new ImageIcon(this.getClass().getResource("images/cookie.png"));
         JOptionPane.showMessageDialog(null, "give that man a cookie", "YOU WON", JOptionPane.INFORMATION_MESSAGE, icon);
+        Inicio = true;
 		}
 			
-		repaint();
+		
 	
 		
 	}

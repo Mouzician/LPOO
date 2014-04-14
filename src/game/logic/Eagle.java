@@ -15,7 +15,7 @@ public class Eagle extends MazeObj {
 		super();
 		this.coluna = Dono.coluna;
 		this.linha = Dono.linha;
-		this.symbol = 'B';
+		this.symbol = 'W';
 		alive = true;
 		flying = false;
 		Sword = false;
@@ -24,8 +24,8 @@ public class Eagle extends MazeObj {
 	public void Dead(Drake Drags[]) {
 		for (int d = 0; d < Drags.length; d++)
 			if (Drags[d].alive() && Drags[d].awake)
-				if ((Drags[d].coluna - this.coluna) <= 1
-						&& (Drags[d].linha - this.linha) <= 1)
+				if (Math.abs(Drags[d].coluna - this.coluna) <= 1
+						&& Math.abs(Drags[d].linha - this.linha) <= 1)
 					alive = false;
 	}
 
@@ -38,19 +38,15 @@ public class Eagle extends MazeObj {
 		double dlin = 1.0;
 
 		if (Math.abs(Dono.coluna - E.coluna) < Math.abs(Dono.linha - E.linha))
-			dcol = 1.0 * (Dono.coluna - E.coluna) / (Dono.linha - E.linha);
+			dcol = 1.0 * (double)(Dono.coluna - E.coluna) / (Dono.linha - E.linha);
 		else if (Math.abs(Dono.coluna - E.coluna) > Math.abs(Dono.linha	- E.linha)) 
-			dlin = 1.0 * (Dono.linha - E.linha) / (Dono.coluna - E.coluna);
+			dlin = 1.0 * (double)(Dono.linha - E.linha) / (Dono.coluna - E.coluna);
 	
 
-		if (Dono.coluna - E.coluna < 0 && dcol < 0)
-			dcol = -dcol;
-		else if (Dono.coluna - E.coluna > 0 && dcol > 0)
+		if ((Dono.coluna - E.coluna < 0 && dcol < 0) ||  (Dono.coluna - E.coluna > 0 && dcol > 0))
 			dcol = -dcol;
 
-		if (Dono.linha - E.linha < 0 && dlin < 0)
-			dlin = -dlin;
-		else if (Dono.linha - E.linha > 0 && dlin > 0)
+		if ((Dono.linha - E.linha < 0 && dlin < 0) || (Dono.linha - E.linha > 0 && dlin > 0))
 			dlin = -dlin;
 
 		double col = 1.0 * Dono.coluna;
@@ -69,10 +65,10 @@ public class Eagle extends MazeObj {
 			//new java.util.Scanner(System.in).nextLine();
 			// ///////SYSTEMPAUSE
 
-			if (col == (double) end.line)
+			if (col == (double) end.colune)
 				dcol = 0;
 
-			if (lin == (double) end.colune)
+			if (lin == (double) end.line)
 				dlin = 0;
 
 			col = col + dcol;
@@ -89,11 +85,6 @@ public class Eagle extends MazeObj {
 		}
 		path.remove(0);
 		path.remove((int) Math.round(path.size()/2));
-		
-		for (int i = 0; i < path.size(); i++) {
-			System.out.printf("\nesta %s ", path.elementAt(i).colune);
-		    System.out.printf("\nesta %s ", path.elementAt(i).line);
-		}
 		
 	}
 
@@ -114,6 +105,13 @@ public class Eagle extends MazeObj {
 	
 	public boolean flying(){
 		return flying;
+	}
+	
+	public void withSword(){
+		Sword = true;
+	}
+	public boolean armada(){
+		return Sword;
 	}
 
 }

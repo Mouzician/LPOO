@@ -38,6 +38,7 @@ public class Game {
 		Drags = new Drake[nrDrags];
 		for (int d = 0; d < Drags.length; d++)
 			Drags[d] = new Drake(tab, c);
+		
 		Ei = new Eagle(Hero);
 
 		Espada = new Sword(tab);
@@ -49,14 +50,16 @@ public class Game {
 		if (Hero.MoveObj(tab, dx, dy)) {
 
 			for (int d = 0; d < Drags.length; d++)
-				if (Hero.samePosition(Drags[d]) && !Hero.Armado)
+				if (Math.abs(Drags[d].coluna - Hero.coluna) <= 1
+						&& Math.abs(Drags[d].linha - Hero.linha) <= 1 && !Hero.arma())
 					Hero.Dead();
 
 			if (Hero.samePosition(Espada))
 				Hero.armado();
 
 			for (int d = 0; d < Drags.length; d++)
-				if (Hero.samePosition(Drags[d]) && Hero.Armado)
+				if (Math.abs(Drags[d].coluna - Hero.coluna) <= 1
+						&& Math.abs(Drags[d].linha - Hero.linha) <= 1 && Hero.arma())
 					Drags[d].Dead();
 
 		}
@@ -112,10 +115,12 @@ public class Game {
 				Dmov.linha = Dmov.linha + yy;
 				Dmov.coluna = Dmov.coluna + xx;
 
-				if (Hero.arma() && Dmov.samePosition(Hero))
+				if ((Hero.coluna - Dmov.coluna) <= 1
+						&& (Hero.linha - Dmov.linha) <= 1 && Hero.arma())
 					Dmov.Dead();
 
-				else if (Dmov.samePosition(Hero))
+				else if (Math.abs(Hero.coluna - Dmov.coluna) <= 1
+						&& Math.abs(Hero.linha - Dmov.linha) <= 1)
 					Hero.Dead();
 
 				moveu = true;
@@ -141,19 +146,23 @@ public class Game {
 		if (!Ei.flying)
 			return;
 
+		if(Ei.path.size() != 0){
 		Cell next = Ei.nextPosition();
 		
 		Ei.coluna = next.colune;
 		Ei.linha = next.line;
 		
 		Ei.removeFirst();
-		
+		}
 		Ei.Dead(Drags);
 		
+
+		if(Ei.samePosition(Espada))
+			Ei.withSword();
 		
-		if(Ei.path.size() == 0)
-			Ei.flying = false;
-		
+		if(Ei.samePosition(Hero))
+			{Hero.armado();
+			Ei.flying = false;}
 		
 
 	}
@@ -221,7 +230,7 @@ public class Game {
 			if (Drags[d].alive())
 				temp[Drags[d].linha][Drags[d].coluna] = Drags[d].symbol;
 
-		if (!Hero.arma())
+		if (!Hero.arma() && !Ei.armada())
 			temp[Espada.linha][Espada.coluna] = Espada.symbol;
 
 		for (int d = 0; d < Drags.length; d++)
@@ -230,8 +239,9 @@ public class Game {
 
 		if (Ei.flying && Ei.alive) {
 			temp[Ei.linha][Ei.coluna] = 'W';
-			if (Ei.Sword)
-				temp[Ei.linha][Ei.coluna + 1] = 'E';
+			
+			if(Ei.Sword)
+				temp[Ei.linha][Ei.coluna] = 'V';
 		}
 			
 		

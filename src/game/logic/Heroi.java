@@ -32,8 +32,8 @@ public class Heroi extends MazeObj {
 	public void Dead(Drake Drags[]) {
 		for (int d = 0; d < Drags.length; d++)
 			if (Drags[d].alive() && Drags[d].awake)
-				if ((Drags[d].coluna - this.coluna) <= 1
-						&& (Drags[d].linha - this.linha) <= 1)
+				if (Math.abs(Drags[d].coluna - this.coluna) <= 1
+						&& Math.abs(Drags[d].linha - this.linha) <= 1)
 					alive = false;
 	}
 	

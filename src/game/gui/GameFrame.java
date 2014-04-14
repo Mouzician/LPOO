@@ -23,8 +23,6 @@ public class GameFrame extends JFrame {
 	private JPanel GButtons;
 	private GamePanel GPanel;
 	private GameOptions Gameoptions;
-	private int FLargura;
-	private int FAltura;
 
 	public GameFrame() {
 
@@ -41,9 +39,7 @@ public class GameFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		addButtons();
-		FLargura = 793;
-		FAltura = 470;
-		setSize(FLargura, FAltura);
+		setSize(793, 470);
 
 		Gameoptions = new GameOptions();
 	}
@@ -59,10 +55,7 @@ public class GameFrame extends JFrame {
 				if (res == JOptionPane.YES_OPTION) {
 					
 					
-					FLargura = 660;
-					FAltura = 710;
-					
-					setSize(FLargura, FAltura);
+					setSize(660,710);
 					Game Jogo = new Game(Gameoptions.getnewSizeM(), Gameoptions
 							.getnewNrD(), Gameoptions.getnewDrakeB());
 					
