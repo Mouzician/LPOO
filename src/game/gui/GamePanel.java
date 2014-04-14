@@ -123,9 +123,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 				drawSymbol(g2d, a, i, tab[i][a]);
 			}
 		
-		
-		
-	
 	}
 
 
@@ -213,9 +210,9 @@ public class GamePanel extends JPanel implements  KeyListener {
         JOptionPane.showMessageDialog(null, "give that man a cookie", "YOU WON", JOptionPane.INFORMATION_MESSAGE, icon);
 		}
 			
-		
-	
 		repaint();
+	
+		
 	}
 	  @Override
       public void keyTyped(KeyEvent e) {

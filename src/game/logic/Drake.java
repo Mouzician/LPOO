@@ -34,5 +34,9 @@ public class Drake extends MazeObj {
 	public boolean alive(){
 		return vivo;
 	}
+	
+	
+	
+	
 
 }

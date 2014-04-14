@@ -61,7 +61,7 @@ public class Game {
 
 		}
 
-		if (tab[Hero.linha][Hero.coluna] == 'S' && !Hero.arma() && AllDrakesD()) {
+		if (tab[Hero.linha][Hero.coluna] == 'S' &&  !AllDrakesD()) {
 			Hero.coluna = Hero.coluna - dx;
 			Hero.linha = Hero.linha - dy;
 
