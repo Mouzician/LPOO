@@ -127,8 +127,13 @@ public class GameFrame extends JFrame {
 		GButtons.add(Gexit);
 		Gexit.setBackground(Color.BLACK);
 		Gexit.setForeground(Color.GRAY);
+		
+		
 
 		getContentPane().add(GButtons, BorderLayout.NORTH);
+		
+		GButtons.setFocusable(false);
+		
 		getContentPane().add(GPanel, BorderLayout.CENTER);
 		pack();
 

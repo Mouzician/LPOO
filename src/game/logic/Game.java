@@ -191,10 +191,6 @@ public class Game {
 		}
 		
 		
-		
-		
-		
-		
 		return temp;
 	}
 
@@ -224,11 +220,7 @@ public class Game {
 			if (Ei.Sword)
 				temp[Ei.linha][Ei.coluna + 1] = 'E';
 		}
-		
-		
-		
-		
-		
+			
 		
 		return temp;
 	}

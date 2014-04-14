@@ -27,9 +27,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 	private Image MonsterS;
 	private Image SpleepMonster;
 
-	private int FSizeX;
-	private int FSizeY;
-
 	private int upKey = KeyEvent.VK_W;
 	private int leftKey = KeyEvent.VK_A;
 	private int rightKey = KeyEvent.VK_D;
@@ -41,13 +38,12 @@ public class GamePanel extends JPanel implements  KeyListener {
 	private boolean Inicio;
 
 	public GamePanel() {
+		setSize(790,444);
 		Inicio = true;
 		loadImages();
 		Jogo = null;
-		requestFocus();
 		addKeyListener(this);
 		setFocusable(true);
-
 		
 	}
 
@@ -111,7 +107,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 		Graphics2D g2 = (Graphics2D) g;
 
 		if (Inicio)
-			g2.drawImage(Intro, 0, 0, null);
+			g2.drawImage(Intro, 0,0 ,getWidth(),getHeight(), null);
 		else
 			DrawMaze(g2);
 
@@ -126,16 +122,14 @@ public class GamePanel extends JPanel implements  KeyListener {
 
 			}
 
-		FSizeX = (FSizeX * tab.length);
-		FSizeY = (FSizeY * tab.length);
 	}
 
 
 
 	private void drawSymbol(Graphics2D g2d, int x, int y, char s) {
 
-		int nx = (FSizeX / Jogo.giveTab2().length);
-		int ny = (FSizeY / Jogo.giveTab2().length);
+		int nx = (getWidth() / Jogo.giveTab2().length);
+		int ny = (getHeight() / Jogo.giveTab2().length);
 
 		Image temp = Intro;
 
@@ -204,16 +198,17 @@ public class GamePanel extends JPanel implements  KeyListener {
 		if (!Jogo.getHero().alive())
 			Inicio = true;
 		
+		Jogo.imprimeTab();
+		
+	
 		repaint();
 	}
 	  @Override
       public void keyTyped(KeyEvent e) {
-		  System.out.println("keyTyped: "+e);
 	  }
 
       @Override
       public void keyReleased(KeyEvent e) {
-    	  System.out.println("keyReleased: "+e);
       }
 	
 	
@@ -222,22 +217,22 @@ public class GamePanel extends JPanel implements  KeyListener {
 	public void updateBegin(Game j,int[] keys) {
 		Jogo = j;
 		Inicio = false;
-		FSizeX = 660;
-		FSizeY = 660;
+
 		setSize(660,660);
 		
-		upKey = keys[0];
-		leftKey = keys[1];
-		rightKey = keys[2];
-		downKey = keys[3];
-		sendEagleKey = keys[4];
+		//upKey = keys[0];
+		//leftKey = keys[1];
+		//rightKey = keys[2];
+		//downKey = keys[3];
+		//sendEagleKey = keys[4];
+		
 
 		repaint();
+
+		requestFocus();
 	}
 
-	public Cell newSize() {
-		return new Cell(FSizeY, FSizeX);
-	}
+
 	public boolean Inicio(){
 		return Inicio;
 	}
