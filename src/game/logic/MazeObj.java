@@ -66,4 +66,11 @@ public abstract class MazeObj {
 		public int lin(){
 			return linha;
 		}
+		
+		public void setlin(int l){
+			linha = l;
+		}
+		public void setcol(int col){
+			coluna = col;
+		}
 	}

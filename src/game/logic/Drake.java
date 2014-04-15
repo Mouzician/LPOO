@@ -19,7 +19,7 @@ public class Drake extends MazeObj {
 		choice = c;
 	}
 	
-	Drake(int lin, int col,DragonChoice c)
+	public Drake(int lin, int col,DragonChoice c)
 	{
 		super('D',lin,col);
 		vivo = true;

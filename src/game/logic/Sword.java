@@ -6,7 +6,7 @@ public class Sword extends MazeObj {
 		super(tab,'E');
 
 	}
-	Sword(int lin, int col)
+	public Sword(int lin, int col)
 	{
 		super('E',lin,col);
 	}

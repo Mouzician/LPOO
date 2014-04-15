@@ -45,7 +45,8 @@ public class CraftMode extends JPanel {
 	
 	Heroi Rambo;
 	Sword Espadita;
-	Vector <Drake> Draks;
+	Drake Draks[];
+	int FirstD = 0;
 	MazeObj Out;
 	
 	
@@ -83,9 +84,14 @@ public class CraftMode extends JPanel {
 	
 	
 	
-	
+
 	
 	public void update(){
+		
+		Draks = new Drake[GOptions.getnewNrD()];
+		
+		for(int d = 0; d < Draks.length; d++)
+			Draks[d] = null;
 		
 		
 		if(GOptions.getnewSizeM() != 0)
@@ -189,6 +195,27 @@ public class CraftMode extends JPanel {
 
 	}
 	
+	
+	private boolean MazeFinished(){
+		boolean c = true;
+		for(int i = 0; i < tab.length; i++)
+			for(int a = 0; a < tab.length; a++)
+			{
+				if(tab[i][a] == 'C')
+					c = false;
+			}
+		
+		boolean drak = true;
+		for(int d = 0; d < Draks.length; d++)
+			if(Draks[d] == null)
+				drak = false;
+
+		return c && Rambo != null && Sword != null && drak;
+		
+	}
+	
+	
+	
 	private void ButtonsActions() {
 		
 		HeroButton = new JButton("Hero");
@@ -270,6 +297,7 @@ public class CraftMode extends JPanel {
 		b.setBackground(Color.BLACK);
 		b.setForeground(Color.GRAY);
 	}
+
 	private void addButtons() {
 
 		CraftButtons.setLayout(new GridLayout(1, 7));
@@ -314,19 +342,87 @@ public class CraftMode extends JPanel {
 
 	}
 	
+
 	private void addsymbol(int lin, int col)
 	{
 		lin = (lin / (getHeight() / tab.length));
 		col = (col / (getWidth()/ tab.length));
 		
 		
+		//Heroi
+		if(print == 'H' && Rambo != null)
+		{
+			tab[Rambo.lin()][Rambo.col()] = 'C';
+			Rambo.setlin(lin);
+			Rambo.setcol(col);
+			tab[lin][col] = print;
+		}
+		else if(print == 'H')
+		{
+			Rambo = new Heroi(lin, col);
+			tab[lin][col] = print;
+		}
+		
+		//Espada
+		if(print == 'E' && Espadita != null)
+		{
+			tab[Espadita.lin()][Espadita.col()] = 'C';
+			Espadita.setlin(lin);
+			Espadita.setcol(col);
+			tab[lin][col] = print;
+		}
+		else if(print == 'E')
+		{
+			Espadita = new Sword(lin, col);
+			tab[lin][col] = print;
+		}
+		
+		
+		if(print == 'D')
+		{
+			for(int d = 0; d < Draks.length; d++)
+			{
+				if(Draks[d] == null)
+				{
+					Draks[d] = new Drake(lin,col,GOptions.getnewDrakeB());
+				
+				tab[Draks[d].lin()][Draks[d].col()] = print;
+				repaint();
+				return;}
+			}
+			
+			tab[Draks[FirstD].lin()][Draks[FirstD].col()] = 'C';
+			Draks[FirstD] = new Drake(lin,col,GOptions.getnewDrakeB());
+			FirstD++;
+			if(FirstD == Draks.length)
+				FirstD = 0;
+		}
+		
+		
+		
+		
 		tab[lin][col] = print;
 		repaint();
 	}
+
 	private void removesymbol(int lin, int col)
 	{
 		lin = (lin / (getHeight() / tab.length));
 		col = (col / (getWidth()/ tab.length));
+		
+		if(tab[lin][col] == 'H')
+			Rambo = null;
+		
+		if(tab[lin][col] == 'E')
+			Espadita = null;
+		
+		if(tab[lin][col] == 'D')
+			for(int d = 0; d < Draks.length; d++)
+				if(Draks[d].lin() == lin && Draks[d].col() == col)
+					Draks[d] = null;
+		
+		
+		
 		tab[lin][col] = 'C';
 		repaint();
 	}
@@ -367,7 +463,5 @@ public class CraftMode extends JPanel {
             }
         });
 	}
-	
 
-	
 }

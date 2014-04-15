@@ -10,7 +10,7 @@ public class Heroi extends MazeObj {
 		alive = true;
 	}
 	
-	Heroi(int lin, int col)
+	public Heroi(int lin, int col)
 	{
 		super('H',lin,col);
 		Armado = false;
