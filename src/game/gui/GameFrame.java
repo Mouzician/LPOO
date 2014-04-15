@@ -26,11 +26,11 @@ public class GameFrame extends JFrame {
 	private CraftMode CraftGame;
 
 	public GameFrame() {
-		Gameoptions = new GameOptions(GPanel);
+		
 		
 		GPanel = new GamePanel(this);
 		GPanel.setVisible(true);
-		
+		Gameoptions = new GameOptions(GPanel);
 		CraftGame = new CraftMode(this,Gameoptions);
 		setTitle("Maze Game");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

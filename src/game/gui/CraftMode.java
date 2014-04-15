@@ -80,7 +80,7 @@ public class CraftMode extends JPanel {
 		
 		for(int i = 0; i < tab.length; i++ )
 			for(int a = 0; a < tab.length; a++)
-				if((i == 0 || i == tab.length-1) && (a == 0 || a == tab.length-1))
+				if((i == 0 || i == tab.length-1) || (a == 0 || a == tab.length-1))
 					tab[i][a] = 'X';
 				else
 					tab[i][a] = 'C';
