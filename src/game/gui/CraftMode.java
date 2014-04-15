@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -20,12 +19,12 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Image;
-import java.util.Vector;
 
 import javax.swing.JButton;
 
 
 public class CraftMode extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private JButton HeroButton;
 	private JButton DrakeButton;
 	private JButton WallButton;
@@ -286,7 +285,7 @@ public class CraftMode extends JPanel {
 				String[] buttons = { "Play", "Exit",
 						"Cancel" };
 				int choice = JOptionPane
-						.showOptionDialog(null, "Plat or Exit to Menu?",
+						.showOptionDialog(null, "Play or Exit to Menu?",
 								"Start Game", JOptionPane.PLAIN_MESSAGE, 0,
 								icon, buttons, buttons[0]);
 				if (choice == 0) 
@@ -418,7 +417,7 @@ public class CraftMode extends JPanel {
 		else if(print == 'S')
 		{
 			if(lin == 0 || lin == tab.length-1 || col == 0 || col == tab.length-1){
-			tab[Out.getLine()][Out.getCol()] = 'C';
+			tab[Out.getLine()][Out.getCol()] = 'X';
 			Out = new Cell(lin, col);}
 			else return;
 			
@@ -445,7 +444,11 @@ public class CraftMode extends JPanel {
 					Draks[d] = null;
 		
 		if(tab[lin][col] == 'S')
-			Out = null;
+			{Out = null;
+			tab[lin][col] = 'X';
+			repaint();
+			return;
+			}
 		
 		tab[lin][col] = 'C';
 		repaint();
