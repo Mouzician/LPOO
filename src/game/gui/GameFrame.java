@@ -30,7 +30,8 @@ public class GameFrame extends JFrame {
 		
 		GPanel = new GamePanel(this);
 		GPanel.setVisible(true);
-
+		
+		CraftGame = new CraftMode(this,Gameoptions);
 		setTitle("Maze Game");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -43,7 +44,7 @@ public class GameFrame extends JFrame {
 		addButtons();
 		setSize(793, 470);
 		
-		CraftGame = new CraftMode(this,Gameoptions);
+		
 		
 	}
 
@@ -74,7 +75,7 @@ public class GameFrame extends JFrame {
 				else if (choice == 1) {
 					
 					
-					setSize(660,710);
+					
 					getContentPane().remove(GPanel);
 					getContentPane().remove(GButtons);
 					//GPanel.setVisible(false);

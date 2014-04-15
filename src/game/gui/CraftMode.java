@@ -59,6 +59,7 @@ public class CraftMode extends JPanel {
 	
 	public CraftMode(GameFrame GF,GameOptions GO)
 	{
+		CraftButtons = new JPanel();
 		setVisible(false);
 		GFrame = GF;
 		GOptions = GO;
@@ -69,7 +70,7 @@ public class CraftMode extends JPanel {
 	}
 	
 	public void update(){
-		/*
+		
 		
 		if(GOptions.getnewSizeM() != 0)
 			tab = new char[GOptions.getnewSizeM()][GOptions.getnewSizeM()];
@@ -83,9 +84,10 @@ public class CraftMode extends JPanel {
 					tab[i][a] = 'X';
 				else
 					tab[i][a] = 'C';
-		*/
+		
 		
 		addButtons();
+		GFrame.setSize(660,710);
 	}
 	
 	
