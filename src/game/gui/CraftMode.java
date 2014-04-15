@@ -1,9 +1,10 @@
 package game.gui;
 
-import game.logic.Game;
+import game.logic.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -22,6 +23,7 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Image;
+import java.util.Vector;
 
 import javax.swing.JButton;
 
@@ -41,6 +43,11 @@ public class CraftMode extends JPanel {
 	
 	char print;
 	
+	Heroi Rambo;
+	Sword Espadita;
+	Vector <Drake> Draks;
+	MazeObj Out;
+	
 	
 	private Image Wall;
 	private Image Floor;
@@ -59,15 +66,24 @@ public class CraftMode extends JPanel {
 	
 	public CraftMode(GameFrame GF,GameOptions GO)
 	{
+		Rambo = null;
+		Sword = null;
+		Out = null;
+		addMouse();
+		
 		CraftButtons = new JPanel();
 		setVisible(false);
 		GFrame = GF;
 		GOptions = GO;
-		char print = 'X';
+		print = 'X';
 		setFocusable(true);
 		loadImages();
 		ButtonsActions();
 	}
+	
+	
+	
+	
 	
 	public void update(){
 		
@@ -180,6 +196,7 @@ public class CraftMode extends JPanel {
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				print = 'H';
+				requestFocus();
 			}
 
 		});	
@@ -189,6 +206,7 @@ public class CraftMode extends JPanel {
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				print = 'D';
+				requestFocus();
 			}
 
 		});	
@@ -199,6 +217,7 @@ public class CraftMode extends JPanel {
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				print = 'X';
+				requestFocus();
 			}
 
 		});	
@@ -208,6 +227,7 @@ public class CraftMode extends JPanel {
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				print = 'E';
+				requestFocus();
 			}
 
 		});
@@ -217,6 +237,7 @@ public class CraftMode extends JPanel {
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				print = ' ';
+				requestFocus();
 			}
 
 		});	
@@ -227,6 +248,7 @@ public class CraftMode extends JPanel {
 		{
 			public void actionPerformed(ActionEvent arg0) {
 				print = 'S';
+				requestFocus();
 			}
 
 		});
@@ -288,6 +310,64 @@ public class CraftMode extends JPanel {
 		
 		CraftButtons.setVisible(true);
 		setVisible(true);
+		requestFocus();
 
 	}
+	
+	private void addsymbol(int lin, int col)
+	{
+		lin = (lin / (getHeight() / tab.length));
+		col = (col / (getWidth()/ tab.length));
+		
+		
+		tab[lin][col] = print;
+		repaint();
+	}
+	private void removesymbol(int lin, int col)
+	{
+		lin = (lin / (getHeight() / tab.length));
+		col = (col / (getWidth()/ tab.length));
+		tab[lin][col] = 'C';
+		repaint();
+	}
+	
+	
+	private void addMouse(){
+		
+		addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                
+                switch (e.getButton()) {
+    			case MouseEvent.BUTTON1:
+    				addsymbol(e.getY(), e.getX());
+    				break;
+    			case MouseEvent.BUTTON2:
+    				break;
+    			case MouseEvent.BUTTON3:
+    				removesymbol(e.getY(), e.getX());
+    				break;
+    			}
+                
+                
+                
+                
+                
+            }
+            public void mouseEntered(MouseEvent e) {
+               // System.out.println("mouseEntered");
+            }
+            public void mouseExited(MouseEvent e) {
+                //System.out.println("mouseExited");
+            }
+            public void mousePressed(MouseEvent e) {
+                //System.out.println("mousePressed");
+            }
+            public void mouseReleased(MouseEvent e) {
+                //System.out.println("mouseReleased");
+            }
+        });
+	}
+	
+
+	
 }
