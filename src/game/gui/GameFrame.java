@@ -26,7 +26,8 @@ public class GameFrame extends JFrame {
 	private CraftMode CraftGame;
 
 	public GameFrame() {
-
+		Gameoptions = new GameOptions(GPanel);
+		
 		GPanel = new GamePanel(this);
 		GPanel.setVisible(true);
 
@@ -41,8 +42,9 @@ public class GameFrame extends JFrame {
 
 		addButtons();
 		setSize(793, 470);
-
-		Gameoptions = new GameOptions(GPanel);
+		
+		CraftGame = new CraftMode(this,Gameoptions);
+		
 	}
 
 	private void ButtonsActions() {
@@ -50,11 +52,14 @@ public class GameFrame extends JFrame {
 		GNewGame.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) {
-				String msg = "Do you want New Game?";
-				int res = JOptionPane.showConfirmDialog(rootPane, msg);
-
-				if (res == JOptionPane.YES_OPTION) {
-					
+				Icon icon = UIManager.getIcon("OptionPane.questionIcon");
+				String[] buttons = { "New Game", "Create Game",
+						"Cancel" };
+				int choice = JOptionPane
+						.showOptionDialog(rootPane, "Do you want New Game?",
+								"Start Game", JOptionPane.PLAIN_MESSAGE, 0,
+								icon, buttons, buttons[0]);
+				if (choice == 0) {
 					
 					setSize(660,710);
 					Game Jogo = new Game(Gameoptions.getnewSizeM(), Gameoptions
@@ -65,8 +70,21 @@ public class GameFrame extends JFrame {
 					
 					
 
-					
 				}
+				else if (choice == 1) {
+					
+					
+					setSize(660,710);
+					getContentPane().remove(GPanel);
+					getContentPane().remove(GButtons);
+					//GPanel.setVisible(false);
+					//GButtons.setVisible(false);
+					CraftGame.update();
+				}
+				else if (choice == 2) {
+					JOptionPane.getRootFrame().dispose();
+				}
+				GPanel.requestFocus();
 			}
 
 		});
