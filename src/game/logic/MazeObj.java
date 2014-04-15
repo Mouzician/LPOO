@@ -23,7 +23,7 @@ public abstract class MazeObj {
 		}
 		MazeObj(){}
 
-		MazeObj(char s, int lin, int col)
+		public MazeObj(char s, int lin, int col)
 		{
 			symbol = s;
 			linha = lin;

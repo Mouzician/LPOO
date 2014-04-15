@@ -31,7 +31,7 @@ public class GameFrame extends JFrame {
 		GPanel = new GamePanel(this);
 		GPanel.setVisible(true);
 		Gameoptions = new GameOptions(GPanel);
-		CraftGame = new CraftMode(this,Gameoptions);
+		CraftGame = new CraftMode(this,Gameoptions,GPanel);
 		setTitle("Maze Game");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -126,7 +126,7 @@ public class GameFrame extends JFrame {
 		
 	}
 
-	private void addButtons() {
+	public void addButtons() {
 
 		GButtons.setLayout(new GridLayout(1, 4));
 		GButtons.add(GNewGame);

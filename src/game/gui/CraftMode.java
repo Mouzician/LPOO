@@ -6,15 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
 import javax.swing.UIManager;
 
 import java.awt.Color;
@@ -47,7 +44,7 @@ public class CraftMode extends JPanel {
 	Sword Espadita;
 	Drake Draks[];
 	int FirstD = 0;
-	MazeObj Out;
+	Cell Out;
 	
 	
 	private Image Wall;
@@ -63,9 +60,10 @@ public class CraftMode extends JPanel {
 	
 	GameFrame GFrame;
 	GameOptions GOptions;
+	GamePanel GPanel;
 	
 	
-	public CraftMode(GameFrame GF,GameOptions GO)
+	public CraftMode(GameFrame GF,GameOptions GO,GamePanel GP)
 	{
 		Rambo = null;
 		Sword = null;
@@ -76,6 +74,7 @@ public class CraftMode extends JPanel {
 		setVisible(false);
 		GFrame = GF;
 		GOptions = GO;
+		GPanel = GP;
 		print = 'X';
 		setFocusable(true);
 		loadImages();
@@ -210,10 +209,9 @@ public class CraftMode extends JPanel {
 			if(Draks[d] == null)
 				drak = false;
 
-		return c && Rambo != null && Sword != null && drak;
+		return c && Rambo != null && Sword != null && drak && Out != null;
 		
 	}
-	
 	
 	
 	private void ButtonsActions() {
@@ -284,7 +282,19 @@ public class CraftMode extends JPanel {
 		ExitButton.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent arg0) {
-				//check if all good
+				Icon icon = UIManager.getIcon("OptionPane.questionIcon");
+				String[] buttons = { "Play", "Exit",
+						"Cancel" };
+				int choice = JOptionPane
+						.showOptionDialog(null, "Plat or Exit to Menu?",
+								"Start Game", JOptionPane.PLAIN_MESSAGE, 0,
+								icon, buttons, buttons[0]);
+				if (choice == 0) 
+					if( MazeFinished())
+					playGame();
+					
+				if(choice == 1)
+				destructur();
 			}
 
 		});
@@ -397,10 +407,23 @@ public class CraftMode extends JPanel {
 			if(FirstD == Draks.length)
 				FirstD = 0;
 		}
-		
-		
-		
-		
+		if(print == 'S' && Out == null)
+		{
+			if(lin == 0 || lin == tab.length-1 || col == 0 || col == tab.length-1)
+			Out = new Cell(lin, col);
+			else
+				return;
+			
+		}
+		else if(print == 'S')
+		{
+			if(lin == 0 || lin == tab.length-1 || col == 0 || col == tab.length-1){
+			tab[Out.getLine()][Out.getCol()] = 'C';
+			Out = new Cell(lin, col);}
+			else return;
+			
+		}
+
 		tab[lin][col] = print;
 		repaint();
 	}
@@ -421,12 +444,29 @@ public class CraftMode extends JPanel {
 				if(Draks[d].lin() == lin && Draks[d].col() == col)
 					Draks[d] = null;
 		
-		
+		if(tab[lin][col] == 'S')
+			Out = null;
 		
 		tab[lin][col] = 'C';
 		repaint();
 	}
 	
+	private void playGame(){
+		GFrame.getContentPane().remove(CraftButtons);
+		GFrame.getContentPane().remove(this);
+		GFrame.addButtons();
+		GFrame.setSize(660,710);
+		
+		Game Jogo = new Game(tab, Rambo, Draks, Espadita);
+		GPanel.updateBegin(Jogo,GOptions.keys());
+	}
+	
+	private void destructur(){
+		GFrame.getContentPane().remove(CraftButtons);
+		GFrame.getContentPane().remove(this);
+		GFrame.addButtons();
+		GFrame.setSize(793, 470);
+	}
 	
 	private void addMouse(){
 		

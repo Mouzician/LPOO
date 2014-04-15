@@ -48,9 +48,16 @@ public class Game {
 	{
 		tab = t;
 		Hero = H;
+		tab[Hero.lin()][Hero.col()] = ' ';
+		
 		Drags = D;
+		for(int i = 0; i < Drags.length; i++)
+			tab[Drags[i].lin()][Drags[i].col()] = ' ';
+
 		Ei = new Eagle(Hero);
+		
 		Espada = E;
+		tab[Espada.lin()][Espada.col()] = ' ';
 		
 	}
 
