@@ -44,6 +44,15 @@ public class Game {
 		Espada = new Sword(tab);
 
 	}
+	public Game(char t[][], Heroi H, Drake D[], Sword E)
+	{
+		tab = t;
+		Hero = H;
+		Drags = D;
+		Ei = new Eagle(Hero);
+		Espada = E;
+		
+	}
 
 	public void movHero(int dx, int dy) {
 
@@ -156,6 +165,12 @@ public class Game {
 		}
 		Ei.Dead(Drags);
 		
+		
+		if(!Ei.alive() && Ei.armada())
+			{Espada.coluna = Ei.coluna;
+			Espada.linha = Ei.linha;
+			Ei.Sword = false;
+			}
 
 		if(Ei.samePosition(Espada))
 			Ei.withSword();
@@ -197,7 +212,7 @@ public class Game {
 			if (Drags[d].alive())
 				temp[Drags[d].linha][2 * Drags[d].coluna] = Drags[d].symbol;
 
-		if (!Hero.arma())
+		if (!Hero.arma() && !Ei.armada())
 			temp[Espada.linha][2 * Espada.coluna] = Espada.symbol;
 
 		for (int d = 0; d < Drags.length; d++)

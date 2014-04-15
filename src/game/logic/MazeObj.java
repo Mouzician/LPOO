@@ -23,6 +23,14 @@ public abstract class MazeObj {
 		}
 		MazeObj(){}
 
+		MazeObj(char s, int lin, int col)
+		{
+			symbol = s;
+			linha = lin;
+			coluna = col;
+		}
+		
+		
 		
 		//esta funçao vai servir de base para o mover de derivadas desta funçao
 		public boolean MoveObj(char tab[][], int dx, int dy){

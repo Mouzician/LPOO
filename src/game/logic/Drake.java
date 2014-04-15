@@ -18,6 +18,15 @@ public class Drake extends MazeObj {
 		awake = true;
 		choice = c;
 	}
+	
+	Drake(int lin, int col,DragonChoice c)
+	{
+		super('D',lin,col);
+		vivo = true;
+		awake = true;
+		choice = c;
+	}
+	
 
 	public void Dead() {
 		vivo = false;

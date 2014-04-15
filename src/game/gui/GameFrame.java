@@ -23,6 +23,7 @@ public class GameFrame extends JFrame {
 	private JPanel GButtons;
 	private GamePanel GPanel;
 	private GameOptions Gameoptions;
+	private CraftMode CraftGame;
 
 	public GameFrame() {
 
@@ -102,7 +103,7 @@ public class GameFrame extends JFrame {
 			}
 		});
 		
-
+		
 		
 	}
 
