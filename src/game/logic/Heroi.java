@@ -4,7 +4,7 @@ public class Heroi extends MazeObj {
 	boolean Armado;
 	boolean alive;
 
-	Heroi(char tab[][]) {
+	public Heroi(char tab[][]) {
 		super(tab,'H');
 		Armado = false;
 		alive = true;

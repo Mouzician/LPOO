@@ -12,7 +12,7 @@ public class Drake extends MazeObj {
 		NOTMOV, MOV, MOVSLEEP
 	}
 	
-	Drake(char tab[][],DragonChoice c) {
+	public Drake(char tab[][],DragonChoice c) {
 		super(tab,'D');
 		vivo = true;
 		awake = true;
@@ -44,7 +44,9 @@ public class Drake extends MazeObj {
 		return vivo;
 	}
 	
-	
+	public boolean sleeping(){
+		return !awake;
+	}
 	
 	
 

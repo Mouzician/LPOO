@@ -54,6 +54,11 @@ public abstract class MazeObj {
 			return (this.coluna == comp.coluna && this.linha == comp.linha);
 		}
 		
+		public boolean samePosition(Cell c)
+		{
+			return (this.coluna== c.getCol() && this.linha == c.getLine());
+		}
+		
 		
 		public char symbol(){
 			return symbol;
