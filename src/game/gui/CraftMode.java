@@ -87,7 +87,7 @@ public class CraftMode extends JPanel {
 		
 		
 		addButtons();
-		GFrame.setSize(660,710);
+		GFrame.setSize(688,705);
 	}
 	
 	
