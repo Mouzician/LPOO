@@ -357,6 +357,9 @@ public class CraftMode extends JPanel {
 		lin = (lin / (getHeight() / tab.length));
 		col = (col / (getWidth()/ tab.length));
 		
+		if(lin >= tab.length || col >= tab.length)
+			return;
+		
 		
 		//Heroi
 		if(print == 'H' && Rambo != null)
@@ -431,6 +434,9 @@ public class CraftMode extends JPanel {
 	{
 		lin = (lin / (getHeight() / tab.length));
 		col = (col / (getWidth()/ tab.length));
+		
+		if(lin >= tab.length || col >= tab.length)
+			return;
 		
 		if(tab[lin][col] == 'H')
 			Rambo = null;

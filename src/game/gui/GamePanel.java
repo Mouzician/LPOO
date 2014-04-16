@@ -265,5 +265,13 @@ public class GamePanel extends JPanel implements  KeyListener {
 		return Inicio;
 	}
 	
+	public Game getGame(){
+		return Jogo;
+	}
+	public void setGame(Game G)
+	{
+		Jogo = G;
+	}
+	
 
 }

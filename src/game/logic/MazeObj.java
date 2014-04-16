@@ -35,6 +35,10 @@ public abstract class MazeObj {
 		//esta funçao vai servir de base para o mover de derivadas desta funçao
 		public boolean MoveObj(char tab[][], int dx, int dy){
 			
+			if(coluna + dx >= tab.length || linha + dy >= tab.length || coluna + dx < 0 || linha + dy < 0)
+				return false;
+			
+			
 			if(tab[linha + dy][coluna + dx] != 'X')
 			{
 				coluna = coluna + dx;
