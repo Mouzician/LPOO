@@ -2,11 +2,15 @@ package game.logic;
 
 import game.logic.Drake.DragonChoice;
 
+import java.io.Serializable;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.Arrays;
 
-public class Game {
+public class Game implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Heroi Hero;
 	Drake Drags[];
 	Sword Espada;

@@ -2,6 +2,10 @@ package game.logic;
 
 public class Sword extends MazeObj {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Sword(char tab[][]) {
 		super(tab,'E');
 

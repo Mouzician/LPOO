@@ -5,17 +5,16 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Label;
 
 import game.logic.*;
-import game.logic.Drake.DragonChoice;
 
 import javax.swing.*;
-
-import game.logic.Cell;
-
 public class GameFrame extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton GNewGame;
 	private JButton GOptions;
 	private JButton GSaveload;
@@ -24,6 +23,7 @@ public class GameFrame extends JFrame {
 	private GamePanel GPanel;
 	private GameOptions Gameoptions;
 	private CraftMode CraftGame;
+	private SaveLoad GSaveLoad;
 
 	public GameFrame() {
 		
@@ -32,6 +32,8 @@ public class GameFrame extends JFrame {
 		GPanel.setVisible(true);
 		Gameoptions = new GameOptions(GPanel);
 		CraftGame = new CraftMode(this,Gameoptions,GPanel);
+		GSaveLoad = new SaveLoad(this,GPanel);
+		
 		setTitle("Maze Game");
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
@@ -43,10 +45,9 @@ public class GameFrame extends JFrame {
 
 		addButtons();
 		setSize(793, 470);
-		
-		
-		
+	
 	}
+
 
 	private void ButtonsActions() {
 		GNewGame = new JButton("New Game");
@@ -93,6 +94,7 @@ public class GameFrame extends JFrame {
 		GOptions = new JButton("Options");
 		GOptions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+	
 				Gameoptions.setVisible(true);
 				
 			}
@@ -102,23 +104,33 @@ public class GameFrame extends JFrame {
 		GSaveload.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if (GPanel.Inicio())
-					JOptionPane.showMessageDialog(rootPane, "No game to save",
-							"Error", JOptionPane.ERROR_MESSAGE);
+				GSaveLoad.updateFiles();
+				GSaveLoad.setVisible(true);
 				
-				GPanel.requestFocus();
 			}
 		});
 
 		Gexit = new JButton("Quit");
 		Gexit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				String msg = "Are you sure you want to quit?";
-				int res = JOptionPane.showConfirmDialog(rootPane, msg);
-
-				if (res == JOptionPane.YES_OPTION)
+				
+				Icon icon = UIManager.getIcon("OptionPane.questionIcon");
+				String[] buttons = { "Continue", "Menu",
+						"Exit", "Cancel" };
+				int choice = JOptionPane
+						.showOptionDialog(null, "Are you sure you want to quit?",
+								"Start Game", JOptionPane.PLAIN_MESSAGE, 0,
+								icon, buttons, buttons[0]);
+				if (choice == 0) 
+					return;
+					
+				if(choice == 1)
+				GPanel.BackToStart();
+				
+				if(choice == 2)
 					System.exit(0);
+					
+				GPanel.requestFocus();
 			}
 		});
 		
@@ -154,6 +166,11 @@ public class GameFrame extends JFrame {
 		getContentPane().add(GPanel, BorderLayout.CENTER);
 		pack();
 
+	}
+	
+	public void LoadGame(Game G){
+		setSize(660,710);
+		GPanel.updateBegin(G,Gameoptions.keys());
 	}
 
 }

@@ -1,8 +1,13 @@
 package game.logic;
+import java.io.Serializable;
 import java.util.Random;
 
 
-public abstract class MazeObj {
+public abstract class MazeObj implements Serializable{
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 		int coluna;
 		int linha;
 		char symbol;

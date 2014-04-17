@@ -1,8 +1,7 @@
 package game.logic;
 
-import java.util.Random;
-
 public class Drake extends MazeObj {
+	private static final long serialVersionUID = 1L;
 	boolean vivo;
 	boolean awake;
 

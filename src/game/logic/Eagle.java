@@ -1,9 +1,13 @@
 package game.logic;
 
-import java.util.Scanner;
 import java.util.Vector;
 
 public class Eagle extends MazeObj {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Boolean flying;
 	Cell start;
 	Cell end;

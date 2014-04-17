@@ -1,7 +1,6 @@
 package game.gui;
 
 import game.logic.*;
-import game.logic.Drake.DragonChoice;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -13,9 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import game.logic.Cell;
-
 public class GamePanel extends JPanel implements  KeyListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Image Wall;
 	private Image Floor;
 	private Image Hero;
@@ -271,6 +272,13 @@ public class GamePanel extends JPanel implements  KeyListener {
 	public void setGame(Game G)
 	{
 		Jogo = G;
+	}
+	
+	public void BackToStart(){
+		GFrame.setSize(793, 470);
+		Jogo = null;
+		Inicio = true;
+		repaint();
 	}
 	
 

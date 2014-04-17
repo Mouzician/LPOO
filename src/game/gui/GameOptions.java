@@ -1,11 +1,10 @@
 package game.gui;
 
-import game.logic.Game;
+
 import game.logic.Drake.DragonChoice;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +19,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
-
-import java.awt.GridLayout;
-
+import java.awt.event.*;
 public class GameOptions extends JDialog {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JSlider MazeSize;
 	JSlider Drakenr;
 	JButton Apply;
@@ -61,9 +61,26 @@ public class GameOptions extends JDialog {
 		ButtonsActions();
 		setSize(300, 500);
 		addButtons();
-
+		WhenClosed();
 	}
 
+	private void WhenClosed(){
+		addWindowListener(new WindowAdapter() 
+		{
+		  public void windowClosed(WindowEvent e)
+		  {
+		   //
+		  }
+
+		  public void windowClosing(WindowEvent e)
+		  {
+			  GPanel.requestFocus();
+		  }
+		});
+	}
+	
+	
+	
 	private void checkSlider() {
 
 		// Maze Size

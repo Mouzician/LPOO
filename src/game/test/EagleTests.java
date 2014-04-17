@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import game.logic.*;
-import game.logic.Drake.DragonChoice;
 
 public class EagleTests {
 

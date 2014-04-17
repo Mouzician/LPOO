@@ -48,6 +48,8 @@ public class run{
 				break;
 			}
 
+			in.close();
+			
 			Jogo.movHero(dx, dy);
 
 			Drake tempD[] = Jogo.getDrags();
@@ -62,6 +64,8 @@ public class run{
 			if (!Jogo.getHero().alive())
 				return false;
 
+			
+			
 		}
 
 		return true;
@@ -88,8 +92,7 @@ public class run{
 			break;
 		}
 			
-		
-		Scanner in2 = new Scanner(System.in);
+
 		System.out.println("Number of Drakes: ");
 	    int nrdrakes = in.nextInt();
 		
@@ -97,7 +100,7 @@ public class run{
 	    System.out.println("Number of Sides: ");
 	    int nrLados= in.nextInt();
 	    
-	    
+	    in.close();
 		Jogo = new Game(nrLados,nrdrakes,escolha);
 		
 		if(play())

@@ -1,9 +1,14 @@
 package game.logic;
 
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Stack;
 
-public class Builder {
+public class Builder implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Cell Exit = new Cell();
 	Cell Guide = new Cell();
 	char[][] lab;
