@@ -9,11 +9,12 @@ import java.awt.event.ActionListener;
 import game.logic.*;
 
 import javax.swing.*;
+
+/**
+ * Classe Game Frame trata do painel inicial do programa
+ */
 public class GameFrame extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JButton GNewGame;
 	private JButton GOptions;
@@ -25,6 +26,9 @@ public class GameFrame extends JFrame {
 	private CraftMode CraftGame;
 	private SaveLoad GSaveLoad;
 
+	/**
+	 * Construtor da classe
+	 */
 	public GameFrame() {
 		
 		
@@ -48,7 +52,10 @@ public class GameFrame extends JFrame {
 	
 	}
 
-
+	/**
+	 * Este método trata dos inputs dos vário butões presentes no menu
+	 * inicial
+	 */
 	private void ButtonsActions() {
 		GNewGame = new JButton("New Game");
 		GNewGame.addActionListener(new ActionListener()
@@ -138,6 +145,9 @@ public class GameFrame extends JFrame {
 		
 	}
 
+	/**
+	 * Adiciona butões ao ecrã inicial
+	 */
 	public void addButtons() {
 
 		GButtons.setLayout(new GridLayout(1, 4));
@@ -168,6 +178,11 @@ public class GameFrame extends JFrame {
 
 	}
 	
+	/**
+	 * Carrega um jogo previamente guardado
+	 * 
+	 * @param G O jogo que vai ser carregado.
+	 */
 	public void LoadGame(Game G){
 		setSize(660,710);
 		GPanel.updateBegin(G,Gameoptions.keys());

@@ -1,9 +1,10 @@
 package game.logic;
 
+/**
+ * Classe referente ao elemento "Heroi" do labirinto
+ */
 public class Heroi extends MazeObj {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	boolean Armado;
 	boolean alive;

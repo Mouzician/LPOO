@@ -2,11 +2,11 @@ package game.logic;
 
 import java.util.Vector;
 
+/**
+ * Classe referente ao elemento "Águia" do labirinto
+ */
 public class Eagle extends MazeObj {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	Boolean flying;
 	Cell start;
@@ -33,6 +33,9 @@ public class Eagle extends MazeObj {
 					alive = false;
 	}
 
+	/**
+	 * Este método calcula o caminho mais curto desde o herói até a espada
+	 */
 	public void DrawPath(Sword E, Heroi Dono) {
 		flying = true;
 		start = new Cell(Dono.linha, Dono.coluna);

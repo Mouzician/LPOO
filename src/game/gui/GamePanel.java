@@ -12,10 +12,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * A classe Game Panel trata da janela do jogo
+ */
 public class GamePanel extends JPanel implements  KeyListener {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Image Wall;
 	private Image Floor;
@@ -41,6 +42,9 @@ public class GamePanel extends JPanel implements  KeyListener {
 
 	private boolean Inicio;
 
+	/**
+	 * Construtor da classe
+	 */
 	public GamePanel(GameFrame g) {
 		GFrame = g;
 		Inicio = true;
@@ -51,6 +55,9 @@ public class GamePanel extends JPanel implements  KeyListener {
 		
 	}
 
+	/**
+	 * Carrega as imagens usadas no desenho dos vários elementos do labirinto
+	 */
 	private void loadImages() {
 		ImageIcon temp;
 
@@ -122,6 +129,11 @@ public class GamePanel extends JPanel implements  KeyListener {
 
 	}
 
+	/**
+	 * Este método desenha o labirinto
+	 * 
+	 * @see {@link drawSymbol(Graphics2D, int, int, char)}
+	 */
 	private void DrawMaze(Graphics2D g2d) {
 		
 		char[][] tab = Jogo.giveTab2();
@@ -133,8 +145,16 @@ public class GamePanel extends JPanel implements  KeyListener {
 		
 	}
 
-
-
+	/**
+	 *Transforma o char do elemento char[][] tab que contém os elementos do 
+	 *labirinto numa imagem a desenhar na janela.
+	 *
+	 *@param x coordenada x do elemento
+	 *
+	 *@param y coordenada y do elemento
+	 *
+	 *@param s representação em string do objecto a transformar numa imagem
+	 */
 	private void drawSymbol(Graphics2D g2d, int x, int y, char s) {
 
 		int nx = (getWidth() / Jogo.giveTab2().length) ;
@@ -182,6 +202,13 @@ public class GamePanel extends JPanel implements  KeyListener {
 
 	}
 	
+	/**
+	 *Gestor das tecas premidas para a movimentação do heroi e da aguia durante
+	 *o jogo.
+	 *Efectua a ação transmitida pelas teclas e volta a imprimir o labirinto
+	 *
+	 *@param e tecla premida a ser tratada
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (Inicio)
@@ -241,9 +268,11 @@ public class GamePanel extends JPanel implements  KeyListener {
       public void keyReleased(KeyEvent e) {
       }
 	
-	
-
-
+     /**
+  	 *Muda a imagem da janela da imagem inicial para a imagem do jogo
+  	 *
+  	 * @param keys Representam as teclas atribuidas pelo utilizador para mover o jogador e a águia
+  	 */
 	public void updateBegin(Game j,int[] keys) {
 		Jogo = j;
 		Inicio = false;
@@ -274,6 +303,9 @@ public class GamePanel extends JPanel implements  KeyListener {
 		Jogo = G;
 	}
 	
+	/**
+	 * Substitui a imagem do labirinto pelo "Wallpaper" pré-definido
+	 */
 	public void BackToStart(){
 		GFrame.setSize(793, 470);
 		Jogo = null;

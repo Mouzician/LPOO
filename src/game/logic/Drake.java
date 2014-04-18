@@ -1,5 +1,8 @@
 package game.logic;
 
+/**
+ * Classe referente ao elemento "Dragão" do labirinto
+ */
 public class Drake extends MazeObj {
 	private static final long serialVersionUID = 1L;
 	boolean vivo;

@@ -2,11 +2,11 @@ package game.logic;
 import java.io.Serializable;
 import java.util.Random;
 
-
+/**
+ * Classe abstracta de todos os elementos do labirinto
+ */
 public abstract class MazeObj implements Serializable{
-		/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 		int coluna;
 		int linha;
@@ -37,7 +37,9 @@ public abstract class MazeObj implements Serializable{
 		
 		
 		
-		//esta funçao vai servir de base para o mover de derivadas desta funçao
+		/**
+		 * Método que move os objetos no labirinto
+		 */
 		public boolean MoveObj(char tab[][], int dx, int dy){
 			
 			if(coluna + dx >= tab.length || linha + dy >= tab.length || coluna + dx < 0 || linha + dy < 0)

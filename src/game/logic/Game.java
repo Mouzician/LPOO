@@ -5,11 +5,11 @@ import game.logic.Drake.DragonChoice;
 import java.io.Serializable;
 import java.util.Random;
 
+/**
+ * 
+ */
 public class Game implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	Heroi Hero;
 	Drake Drags[];
@@ -18,6 +18,15 @@ public class Game implements Serializable{
 	Builder Build = new Builder();
 	Eagle Ei;
 
+	/**
+	 * Construtor da classe
+	 * 
+	 * @param nr Medidas do labirinto
+	 * 
+	 * @param nrDrags Número de dragões
+	 * 
+	 * @param c Tipo de movimentos do dragão
+	 */
 	public Game(int nr, int nrDrags, DragonChoice c) {
 		if (nr != 0)
 			tab = Build.RandomBuilder(nr);
@@ -48,6 +57,18 @@ public class Game implements Serializable{
 		Espada = new Sword(tab);
 
 	}
+	
+	/**
+	 * Construtor da classe
+	 * 
+	 * @param t Representação do labirinto
+	 * 
+	 * @param H Heroi
+	 * 
+	 * @param D Array com os variados dragões
+	 * 
+	 * @param E Espada
+	 */
 	public Game(char t[][], Heroi H, Drake D[], Sword E)
 	{
 		tab = t;
@@ -65,6 +86,9 @@ public class Game implements Serializable{
 		
 	}
 
+	/**
+	 * Este método gere as movimentações do herói
+	 */
 	public void movHero(int dx, int dy) {
 
 		if (Hero.MoveObj(tab, dx, dy)) {
@@ -91,6 +115,11 @@ public class Game implements Serializable{
 		}
 	}
 
+	/**
+	 * Este método gere as movimentações alietorias do dragão
+	 * 
+	 * 
+	 */
 	public void movDrake(Drake Dmov) {
 
 		if (Dmov.choice == DragonChoice.NOTMOV)

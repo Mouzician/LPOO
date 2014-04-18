@@ -4,10 +4,11 @@ import java.io.Serializable;
 import java.util.Random;
 import java.util.Stack;
 
+/**
+ * Classe construtora do labririnto de forma alietoria
+ */
 public class Builder implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	Cell Exit = new Cell();
 	Cell Guide = new Cell();
@@ -137,6 +138,9 @@ public class Builder implements Serializable{
 		return lab;
 	}
 
+	/**
+	 * Calcula se é possivel a movimentaçao para certa direção
+	 */
 	public boolean PosMove(int switcher) {
 		switch (switcher) {
 		// Esquerda

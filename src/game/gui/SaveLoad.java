@@ -27,11 +27,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileOutputStream;
 
-
+/**
+ * A classe Save Load gere os jogos guardados e os jogos a guardar
+ */
 public class SaveLoad extends JDialog {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private GamePanel GPanel;
 	private GameFrame GFrame;
@@ -47,6 +47,9 @@ public class SaveLoad extends JDialog {
 	
 	//private JPanel JSaveLoad;
 	
+	/**
+	 * Construtor da classe
+	 */
 	public SaveLoad(GameFrame GF, GamePanel GP)
 	{
 		setSize(300, 200);
@@ -62,7 +65,7 @@ public class SaveLoad extends JDialog {
 		WhenClosed();
 	}
 	
-
+	
 	private void WhenClosed(){
 		addWindowListener(new WindowAdapter() 
 		{
@@ -78,8 +81,9 @@ public class SaveLoad extends JDialog {
 		});
 	}
 	
-	
-	
+	/**
+	 * Gere os inputs dos botões no menu Save/Load
+	 */
 	private void ButtonsActions() {
 		
 		Save = new JButton("Save");
@@ -165,7 +169,9 @@ public class SaveLoad extends JDialog {
 		
 	}
 	
-	
+	/**
+	 * Guarda o jogo atual com o nome a ser fornecido pelo utilizador
+	 */
 	public void addSave(){
 		
 		JPanel JSave = new JPanel();

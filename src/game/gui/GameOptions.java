@@ -21,10 +21,15 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import java.awt.event.*;
+
+/**
+ * 
+ *A classe Game Options trata de construir e gerir os inputs da 
+ *janela de opções do jogo
+ *
+ */
 public class GameOptions extends JDialog {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	JSlider MazeSize;
 	JSlider Drakenr;
@@ -50,6 +55,11 @@ public class GameOptions extends JDialog {
 	
 	GamePanel GPanel;
 	
+	/**
+	 * 
+	 *Construtor da classe.
+	 *
+	 */
 	public GameOptions(GamePanel g) {
 		setBackground(Color.GRAY);
 		PanelOpt = new JPanel();
@@ -80,7 +90,10 @@ public class GameOptions extends JDialog {
 	}
 	
 	
-	
+	/**
+	 * Gestor dos dois sliders referentes ao tamanho do maze e ao número de
+	 * dragões.
+	 */
 	private void checkSlider() {
 
 		// Maze Size
@@ -120,7 +133,10 @@ public class GameOptions extends JDialog {
 		PanelOpt.add(Drakenr);
 
 	}
-
+	
+	/**
+	 * Gestor dos botões de comportamento dos dragões.
+	 */
 	private void checkBehav() {
 
 		// Maze Size
@@ -148,7 +164,10 @@ public class GameOptions extends JDialog {
 		for (int i = 0; i < Drakeb.length; i++)
 			group.add(Drakeb[i]);
 	}
-
+	
+	/**
+	 *Gestor de todos os inputs da janela de opões. 
+	 */
 	private void ButtonsActions() {
 		Apply = new JButton("Apply");
 		Apply.addActionListener(new ActionListener() {
@@ -221,6 +240,9 @@ public class GameOptions extends JDialog {
 		
 	}
 
+	/**
+	 * Adicionar botões "Apply" e "Cancel" a janela de opções.
+	 */
 	private void addButtons() {
 		PanelOpt.add(Apply);
 		Apply.setBackground(Color.BLACK);
@@ -230,11 +252,16 @@ public class GameOptions extends JDialog {
 		Cancel.setBackground(Color.BLACK);
 		Cancel.setForeground(Color.GRAY);
 	}
-
+	
+	/**
+	 *Gestor da área de seleção das teclas a usar para jogar.
+	 *
+	 * @see {@link StringKey(String)}
+	 */
 	private void keyChange(){
 		JLabel titleControl = new JLabel(
 				"                           Controls               ");
-		JLabel enter = new JLabel("                             ");
+		JLabel enter = new JLabel( "                             ");
 	
 		PanelOpt.add(titleControl);
 		PanelOpt.add(enter);
@@ -284,7 +311,10 @@ public class GameOptions extends JDialog {
 		return newDChoice;
 	}
 	
-	
+	/**
+	 * Transforma as strings recebidas da área de mudança de teclas a usar no
+	 * jogo em KeyEvent's
+	 */
 	public static int StringKey(String str) {
 		str = str.toUpperCase();
 

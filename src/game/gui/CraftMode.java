@@ -22,7 +22,9 @@ import java.awt.Image;
 
 import javax.swing.JButton;
 
-
+/**
+ * Classe referente à contrução do labirinto pelo utilizador através do rato
+ */
 public class CraftMode extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JButton HeroButton;
@@ -61,7 +63,9 @@ public class CraftMode extends JPanel {
 	GameOptions GOptions;
 	GamePanel GPanel;
 	
-	
+	/**
+	 * Construtor da classe
+	 */
 	public CraftMode(GameFrame GF,GameOptions GO,GamePanel GP)
 	{
 		Rambo = null;
@@ -80,9 +84,6 @@ public class CraftMode extends JPanel {
 		ButtonsActions();
 	}
 	
-	
-	
-
 	
 	public void update(){
 		
@@ -212,7 +213,9 @@ public class CraftMode extends JPanel {
 		
 	}
 	
-	
+	/**
+	 * Gere os inputs nos botões do menu de Craft
+	 */
 	private void ButtonsActions() {
 		
 		HeroButton = new JButton("Hero");
@@ -307,6 +310,7 @@ public class CraftMode extends JPanel {
 		b.setForeground(Color.GRAY);
 	}
 
+	
 	private void addButtons() {
 
 		CraftButtons.setLayout(new GridLayout(1, 7));
@@ -477,6 +481,9 @@ public class CraftMode extends JPanel {
 		GFrame.setSize(793, 470);
 	}
 	
+	/**
+	 * Gestor dos inputs do rato
+	 */
 	private void addMouse(){
 		
 		addMouseListener(new MouseAdapter() {
