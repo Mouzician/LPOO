@@ -143,6 +143,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 				drawSymbol(g2d, a, i, tab[i][a]);
 			}
 		
+		
 	}
 
 	/**
