@@ -48,7 +48,7 @@ public class run{
 				break;
 			}
 
-			in.close();
+			//in.close();
 			
 			Jogo.movHero(dx, dy);
 
@@ -76,7 +76,7 @@ public class run{
 	public static void main(String[] args){
 				
 		Scanner in = new Scanner(System.in);
-		System.out.println("1. Dragon Sleep/Mov \n2.No Moves\n3.Only Move ");
+		System.out.println("1. Dragon Sleep/Mov \n2. No Moves\n3. Only Move ");
 		char comp = in.nextLine().charAt(0);
 		
 		DragonChoice escolha = DragonChoice.MOV;
@@ -93,14 +93,19 @@ public class run{
 		}
 			
 
+		int nrLados =0;
 		System.out.println("Number of Drakes: ");
 	    int nrdrakes = in.nextInt();
 		
+	    do{
+	    System.out.println("Number of Sides( 0 for Demo): ");
+	    nrLados = in.nextInt();
 	    
-	    System.out.println("Number of Sides: ");
-	    int nrLados= in.nextInt();
+	    }while(nrLados < 5 && nrLados != 0);
 	    
-	    in.close();
+	    if((nrLados % 2) ==0 && nrLados != 0)
+	    	nrLados++;
+	    
 		Jogo = new Game(nrLados,nrdrakes,escolha);
 		
 		if(play())
@@ -108,7 +113,7 @@ public class run{
 		else
 			System.out.printf(" %s ", "Es uma merda");
 		
-		
+		in.close();
 		
 	}
 	

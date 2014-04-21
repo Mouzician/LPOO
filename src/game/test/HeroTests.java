@@ -36,7 +36,7 @@ public class HeroTests {
 	
 	@Test
 	public void Movimento(){
-		Heroi Hero  = new Heroi(1,1);
+		Heroi Hero  = new Heroi(1,3);
 
 		assertTrue("Heroi moveu-se para direita", Hero.MoveObj(Demo, 1, 0) );
 		assertTrue("Heroi moveu-se para baixo", Hero.MoveObj(Demo, 0, 1) );
@@ -46,8 +46,8 @@ public class HeroTests {
 	public void SemMovimento() {
 		Heroi Hero  = new Heroi(1,1);
 
-		assertTrue("Heroi nao conseguiu mover para a esquerda", !Hero.MoveObj(Demo, -1, 0) );
-		assertTrue("Heroi nao conseguiu mover para cima", !Hero.MoveObj(Demo, 0, -1) );
+		assertFalse("Heroi nao conseguiu mover para a esquerda", Hero.MoveObj(Demo, -1, 0) );
+		assertFalse("Heroi nao conseguiu mover para cima", Hero.MoveObj(Demo, 0, -1) );
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class HeroTests {
 		
 		G.movHero(1, 0);
 		
-		assertTrue("Heroi morreu", !Hero.alive() );
+		assertFalse("Heroi morreu", Hero.alive() );
 	}
 	
 	@Test
@@ -94,16 +94,16 @@ public class HeroTests {
 	
 	@Test
 	public void Vitoria(){
-		Cell Saida = new Cell(9,6);
+		Cell Saida = new Cell(5,9);
 		
-		Heroi Hero  = new Heroi(8,3);
-		Sword S = new Sword(8,4);
-		Drake Drake = new Drake(8,6,DragonChoice.NOTMOV);
+		Heroi Hero  = new Heroi(3,8);
+		Sword S = new Sword(4,8);
+		Drake Drake = new Drake(6,8,DragonChoice.NOTMOV);
 		Drake D[] = new Drake[1];
 		D[0] = Drake;
 		Game G = new Game(Demo, Hero, D,S);
 		
-		G.movHero(0, 1);
+		
 		G.movHero(0, 1);
 		G.movHero(0, 1);
 		G.movHero(1, 0);
@@ -114,20 +114,21 @@ public class HeroTests {
 	
 	@Test
 	public void NaoConsegueSair(){
-		Cell Saida = new Cell(9,6);
+		Cell Saida = new Cell(5,9);
 		
-		Heroi Hero  = new Heroi(9,5);
-		Sword S = new Sword(9,5);
+		Heroi Hero  = new Heroi(3,8);
+		Sword S = new Sword(4,8);
 		Drake Drake = new Drake(1,1,DragonChoice.NOTMOV);
 		Drake D[] = new Drake[1];
 		D[0] = Drake;
 		Game G = new Game(Demo, Hero, D,S);
 		
-		G.movHero(0, 0);
+		G.movHero(0, 1);
+		G.movHero(0, 1);
 		G.movHero(1, 0);
 		
 		
-		assertTrue("Heroi nao consegue sair", !Hero.samePosition(Saida));
+		assertFalse("Heroi nao consegue sair", Hero.samePosition(Saida));
 	}
 	
 	

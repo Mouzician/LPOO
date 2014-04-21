@@ -25,7 +25,7 @@ public class DragonTests {
 	public void Coordenadas() {
 		Drake Dragao = new Drake(Demo,DragonChoice.NOTMOV);
 		
-		assertTrue("Dragao coluna <= 0 e > Demo.lenght", Dragao.col() >= 0 && Dragao.col() < Demo.length );
+	    assertTrue("Dragao coluna <= 0 e > Demo.lenght", Dragao.col() >= 0 && Dragao.col() < Demo.length );
 		assertTrue("Dragao linha <= 0 e > Demo.lenght", Dragao.lin() >= 0 && Dragao.lin() < Demo.length );
 	}
 	
