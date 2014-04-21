@@ -93,10 +93,11 @@ public class run{
 		}
 			
 
-		int nrLados =0;
+		
 		System.out.println("Number of Drakes: ");
 	    int nrdrakes = in.nextInt();
 		
+	    int nrLados =0;
 	    do{
 	    System.out.println("Number of Sides( 0 for Demo): ");
 	    nrLados = in.nextInt();

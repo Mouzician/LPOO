@@ -63,6 +63,7 @@ public class SaveLoad extends JDialog {
 		addLoad();
 		setVisible(false);
 		WhenClosed();
+		setLocationRelativeTo(null);
 	}
 	
 	

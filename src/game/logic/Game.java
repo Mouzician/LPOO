@@ -95,7 +95,7 @@ public class Game implements Serializable{
 
 			for (int d = 0; d < Drags.length; d++)
 				if (Math.abs(Drags[d].coluna - Hero.coluna) <= 1
-						&& Math.abs(Drags[d].linha - Hero.linha) <= 1 && !Hero.arma())
+						&& Math.abs(Drags[d].linha - Hero.linha) <= 1 && !Hero.arma() && !Drags[d].sleeping())
 					Hero.Dead();
 
 			if (Hero.samePosition(Espada) && !Ei.armada())
@@ -164,8 +164,8 @@ public class Game implements Serializable{
 				Dmov.linha = Dmov.linha + yy;
 				Dmov.coluna = Dmov.coluna + xx;
 
-				if ((Hero.coluna - Dmov.coluna) <= 1
-						&& (Hero.linha - Dmov.linha) <= 1 && Hero.arma())
+				if (Math.abs(Hero.coluna - Dmov.coluna) <= 1
+						&& Math.abs(Hero.linha - Dmov.linha) <= 1 && Hero.arma())
 					Dmov.Dead();
 
 				else if (Math.abs(Hero.coluna - Dmov.coluna) <= 1

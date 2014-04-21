@@ -49,7 +49,7 @@ public class GameFrame extends JFrame {
 
 		addButtons();
 		setSize(793, 470);
-	
+		setLocationRelativeTo(null);
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class GameFrame extends JFrame {
 								icon, buttons, buttons[0]);
 				if (choice == 0) {
 					
-					setSize(660,710);
+					setSize(660,610);
 					Game Jogo = new Game(Gameoptions.getnewSizeM(), Gameoptions
 							.getnewNrD(), Gameoptions.getnewDrakeB());
 					
@@ -184,7 +184,7 @@ public class GameFrame extends JFrame {
 	 * @param G O jogo que vai ser carregado.
 	 */
 	public void LoadGame(Game G){
-		setSize(660,710);
+		setSize(660,610);
 		GPanel.updateBegin(G,Gameoptions.keys());
 	}
 

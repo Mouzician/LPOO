@@ -29,7 +29,7 @@ public class Eagle extends MazeObj {
 		for (int d = 0; d < Drags.length; d++)
 			if (Drags[d].alive() && Drags[d].awake)
 				if (Math.abs(Drags[d].coluna - this.coluna) <= 1
-						&& Math.abs(Drags[d].linha - this.linha) <= 1)
+						&& Math.abs(Drags[d].linha - this.linha) <= 1 && !Drags[d].sleeping())
 					alive = false;
 	}
 

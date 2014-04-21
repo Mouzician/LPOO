@@ -72,6 +72,7 @@ public class GameOptions extends JDialog {
 		setSize(300, 500);
 		addButtons();
 		WhenClosed();
+		setLocationRelativeTo(null);
 	}
 
 	private void WhenClosed(){

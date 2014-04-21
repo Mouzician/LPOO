@@ -200,7 +200,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 		}
 
 		g2d.drawImage(temp, x * nx, y * ny, nx, ny, null);
-
+		
 	}
 	
 	/**
@@ -285,7 +285,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 		rightKey = keys[3];
 		sendEagleKey = keys[4];
 		
-
+		
 		repaint();
 
 		requestFocus();

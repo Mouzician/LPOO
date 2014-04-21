@@ -82,7 +82,9 @@ public class CraftMode extends JPanel {
 		setFocusable(true);
 		loadImages();
 		ButtonsActions();
+		
 	}
+	
 	
 	
 	public void update(){
@@ -108,7 +110,7 @@ public class CraftMode extends JPanel {
 		
 		
 		addButtons();
-		GFrame.setSize(688,705);
+		GFrame.setSize(660,610);
 	}
 	
 	
@@ -468,7 +470,7 @@ public class CraftMode extends JPanel {
 		GFrame.getContentPane().remove(CraftButtons);
 		GFrame.getContentPane().remove(this);
 		GFrame.addButtons();
-		GFrame.setSize(660,710);
+		GFrame.setSize(660,610);
 		
 		Game Jogo = new Game(tab, Rambo, Draks, Espadita);
 		GPanel.updateBegin(Jogo,GOptions.keys());
