@@ -48,8 +48,10 @@ public class GameFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
 		addButtons();
+		
+		
 		setSize(793, 470);
-		setLocationRelativeTo(null);
+	  	setLocationRelativeTo(null);
 	}
 
 	/**
@@ -71,6 +73,7 @@ public class GameFrame extends JFrame {
 				if (choice == 0) {
 					
 					setSize(660,610);
+					setLocationRelativeTo(null);
 					Game Jogo = new Game(Gameoptions.getnewSizeM(), Gameoptions
 							.getnewNrD(), Gameoptions.getnewDrakeB());
 					
@@ -185,6 +188,7 @@ public class GameFrame extends JFrame {
 	 */
 	public void LoadGame(Game G){
 		setSize(660,610);
+		setLocationRelativeTo(null);
 		GPanel.updateBegin(G,Gameoptions.keys());
 	}
 

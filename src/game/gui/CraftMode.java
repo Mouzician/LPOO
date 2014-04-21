@@ -111,6 +111,7 @@ public class CraftMode extends JPanel {
 		
 		addButtons();
 		GFrame.setSize(660,610);
+		GFrame.setLocationRelativeTo(null);
 	}
 	
 	
@@ -471,6 +472,7 @@ public class CraftMode extends JPanel {
 		GFrame.getContentPane().remove(this);
 		GFrame.addButtons();
 		GFrame.setSize(660,610);
+		GFrame.setLocationRelativeTo(null);
 		
 		Game Jogo = new Game(tab, Rambo, Draks, Espadita);
 		GPanel.updateBegin(Jogo,GOptions.keys());
@@ -481,6 +483,7 @@ public class CraftMode extends JPanel {
 		GFrame.getContentPane().remove(this);
 		GFrame.addButtons();
 		GFrame.setSize(793, 470);
+		GFrame.setLocationRelativeTo(null);
 	}
 	
 	/**

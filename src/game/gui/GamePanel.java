@@ -255,6 +255,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 	       
 	        Inicio = true;
 	        GFrame.setSize(793, 470);
+	        GFrame.setLocationRelativeTo(null);
 			}
 		
 
@@ -278,7 +279,6 @@ public class GamePanel extends JPanel implements  KeyListener {
 		Jogo = j;
 		Inicio = false;
 
-		
 		upKey = keys[0];
 		downKey = keys[1];
 		leftKey = keys[2];
@@ -288,6 +288,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 		
 		repaint();
 
+		
 		requestFocus();
 	}
 
@@ -309,6 +310,7 @@ public class GamePanel extends JPanel implements  KeyListener {
 	 */
 	public void BackToStart(){
 		GFrame.setSize(793, 470);
+		GFrame.setLocationRelativeTo(null);
 		Jogo = null;
 		Inicio = true;
 		repaint();
