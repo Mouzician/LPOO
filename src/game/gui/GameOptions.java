@@ -63,6 +63,7 @@ public class GameOptions extends JDialog {
 	public GameOptions(GamePanel g) {
 		setBackground(Color.GRAY);
 		PanelOpt = new JPanel();
+		setTitle("Game Options");
 		
 		GPanel = g;
 		checkSlider();
