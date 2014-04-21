@@ -69,7 +69,7 @@ public class GameOptions extends JDialog {
 		checkBehav();
 		keyChange();
 		ButtonsActions();
-		setSize(300, 500);
+		setSize(300, 400);
 		addButtons();
 		WhenClosed();
 		setLocationRelativeTo(null);

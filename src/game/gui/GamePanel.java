@@ -246,11 +246,11 @@ public class GamePanel extends JPanel implements  KeyListener {
 			if(!Jogo.getHero().alive())
 			{
 				icon= new ImageIcon(this.getClass().getResource("images/gameover.png"));
-			 JOptionPane.showMessageDialog(null, "YOU DEAD BITCH", "GAME OVER", JOptionPane.INFORMATION_MESSAGE, icon);
+			 JOptionPane.showMessageDialog(null, "You're dead", "GAME OVER", JOptionPane.INFORMATION_MESSAGE, icon);
 			}
 			else
 				{icon = new ImageIcon(this.getClass().getResource("images/cookie.png"));
-				JOptionPane.showMessageDialog(null, "give that man a cookie", "YOU WON", JOptionPane.INFORMATION_MESSAGE, icon);
+				JOptionPane.showMessageDialog(null, "Congrats!", "YOU WON", JOptionPane.INFORMATION_MESSAGE, icon);
 				}
 	       
 	        Inicio = true;

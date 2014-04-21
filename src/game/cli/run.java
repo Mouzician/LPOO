@@ -110,9 +110,9 @@ public class run{
 		Jogo = new Game(nrLados,nrdrakes,escolha);
 		
 		if(play())
-			System.out.printf(" %s ", "Parabens MODAFACKA!");
+			System.out.printf(" %s ", "You won!");
 		else
-			System.out.printf(" %s ", "Es uma merda");
+			System.out.printf(" %s ", "Game Over.");
 		
 		in.close();
 		
