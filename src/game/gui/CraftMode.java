@@ -41,7 +41,7 @@ public class CraftMode extends JPanel {
 	
 	char print;
 	
-	Heroi Rambo;
+	Heroi newHero;
 	Sword Espadita;
 	Drake Draks[];
 	int FirstD = 0;
@@ -68,7 +68,7 @@ public class CraftMode extends JPanel {
 	 */
 	public CraftMode(GameFrame GF,GameOptions GO,GamePanel GP)
 	{
-		Rambo = null;
+		newHero = null;
 		Sword = null;
 		Out = null;
 		addMouse();
@@ -212,7 +212,7 @@ public class CraftMode extends JPanel {
 			if(Draks[d] == null)
 				drak = false;
 
-		return c && Rambo != null && Sword != null && drak && Out != null;
+		return c && newHero != null && Sword != null && drak && Out != null;
 		
 	}
 	
@@ -369,16 +369,16 @@ public class CraftMode extends JPanel {
 		
 		
 		//Heroi
-		if(print == 'H' && Rambo != null)
+		if(print == 'H' && newHero != null)
 		{
-			tab[Rambo.lin()][Rambo.col()] = 'C';
-			Rambo.setlin(lin);
-			Rambo.setcol(col);
+			tab[newHero.lin()][newHero.col()] = 'C';
+			newHero.setlin(lin);
+			newHero.setcol(col);
 			tab[lin][col] = print;
 		}
 		else if(print == 'H')
 		{
-			Rambo = new Heroi(lin, col);
+			newHero = new Heroi(lin, col);
 			tab[lin][col] = print;
 		}
 		
@@ -446,7 +446,7 @@ public class CraftMode extends JPanel {
 			return;
 		
 		if(tab[lin][col] == 'H')
-			Rambo = null;
+			newHero = null;
 		
 		if(tab[lin][col] == 'E')
 			Espadita = null;
@@ -474,7 +474,7 @@ public class CraftMode extends JPanel {
 		GFrame.setSize(660,610);
 		GFrame.setLocationRelativeTo(null);
 		
-		Game Jogo = new Game(tab, Rambo, Draks, Espadita);
+		Game Jogo = new Game(tab, newHero, Draks, Espadita);
 		GPanel.updateBegin(Jogo,GOptions.keys());
 	}
 	
